@@ -8,20 +8,39 @@ export interface ThemeSwitchProps {}
 const ThemeSwitch: React.FC<ThemeSwitchProps> = ({}) => {
   const [isDark, setIsDark] = React.useState(true)
 
-  const theme = useTheme()
-
-  const toggleDarkMode = () => {
-    setIsDark(!isDark)
-  }
+  const [, actions] = useTheme()
+  // console.log('🍄🍄🍄', actions)
 
   React.useEffect(() => {
-    console.log('Swithcing Theme')
-    // if (isDark) {
-    //   // actions.setTheme('bitil-theme', 'bitil-dark')
-    //   // actions.setTheme('bitil-theme', 'bitil-light')
-    //   theme[1].setTheme('bitil-theme', ' bitil-light')
-    // } else theme[1].setTheme('bitil-theme', ' bitil-dark')
+    if (
+      window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+    ) {
+      // console.log('User prefers dark')
+      actions.setTheme('bitil-theme', 'bitil-dark')
+      setIsDark(true)
+    } else {
+      // console.log('User prefers light')
+      actions.setTheme('bitil-theme', 'bitil-light')
+      setIsDark(false)
+    }
+  }, [])
+
+  React.useEffect(() => {
+    if (isDark) {
+      actions.setTheme('bitil-theme', 'bitil-dark')
+    } else {
+      actions.setTheme('bitil-theme', 'bitil-light')
+    }
   }, [isDark])
+
+  const toggleDarkMode = () => {
+    // console.log(isDark)
+    setIsDark(!isDark)
+    isDark
+      ? actions.setTheme('bitil-theme', 'bitil-dark')
+      : actions.setTheme('bitil-theme', 'bitil-light')
+  }
 
   return (
     <StyledThemeSwitch id="ThemeSwitch">
