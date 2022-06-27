@@ -8,6 +8,7 @@ import { Button } from 'antd'
 const { createContext, useContext, useMemo, useState } = React
 
 const showDebugButton = false
+// const showDebugButton = true
 
 export type ThemeContextValue = [ThemeContextState, ThemeContextActions]
 export interface ThemeContextState {
@@ -35,7 +36,7 @@ type Props = {
   children: JSX.Element
 }
 const Theme = ({ children }: Props) => {
-  const [selectedTheme, selectedVariant] = ['bitil-theme', 'bitil-dark']
+  const [selectedTheme, selectedVariant] = ['bitil-theme', 'bitil-light']
   const [activeState, setActiveState] = useState({
     theme: selectedTheme,
     variant: selectedVariant,
@@ -128,10 +129,17 @@ const Theme = ({ children }: Props) => {
             <pre>{JSON.stringify(themes, null, 2)}</pre>
             <Button
               onClick={() => {
-                actions.setTheme('ayu-and-one-theme', 'one-darker')
+                actions.setTheme('bitil-theme', 'bitil-dark')
               }}
             >
               Change to Dark
+            </Button>
+            <Button
+              onClick={() => {
+                actions.setTheme('bitil-theme', 'bitil-light')
+              }}
+            >
+              Change to Light
             </Button>
           </div>
           <DebugButtons>
