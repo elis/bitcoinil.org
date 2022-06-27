@@ -18,10 +18,9 @@ import { useIntl } from './hooks/useIntl'
 
 function App(): JSX.Element {
   // const { language, messages, locale } = useIntl()
-  const [ln, setLn] = React.useState('en')
 
   const intl = useIntl()
-  const { availableLanguages } = intl
+  const { availableLanguages, language, setLanguage } = intl
 
   const renderRoutes = () => (
     <Routes>
@@ -84,14 +83,14 @@ function App(): JSX.Element {
         </Helmet>
         <IntlProvider
           // @ts-ignore
-          messages={locales[ln]}
-          locale={ln}
+          messages={locales[language]}
+          locale={language}
           defaultLocale="en"
         >
           <div className="App">
             {/* <DevTools /> */}
             <Support />
-            <Header setLanguage={setLn} />
+            <Header setLanguage={setLanguage} />
             {renderRoutes()}
           </div>
           <Footer />
