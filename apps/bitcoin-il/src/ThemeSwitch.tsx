@@ -36,6 +36,7 @@ const ThemeSwitch: React.FC<ThemeSwitchProps> = ({}) => {
 
   const toggleDarkMode = () => {
     // console.log(isDark)
+
     setIsDark(!isDark)
     isDark
       ? actions.setTheme('bitil-theme', 'bitil-dark')
