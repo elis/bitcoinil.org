@@ -14,40 +14,58 @@ import { mainMenuItems } from './mainMenuItems'
 import { nonMenuRoutes } from './nonMenuRoutes'
 import Support from './support'
 import Theme from './themes'
+import { useIntl } from './hooks/useIntl'
 
 function App(): JSX.Element {
   // const { language, messages, locale } = useIntl()
   const [ln, setLn] = React.useState('en')
+
+  const intl = useIntl()
+  const { availableLanguages } = intl
+
   const renderRoutes = () => (
     <Routes>
-      {mainMenuItems.map((menuItem, i) => {
-        const { submenu } = menuItem
+      {availableLanguages.map((lang, ii) => {
+        const langCode = lang.name === 'en' ? '' : `${lang}/`
+        console.log(lang)
+        return mainMenuItems.map((menuItem, i) => {
+          const { submenu } = menuItem
 
-        if (submenu) {
-          return submenu.map((subMenuItem, ii) => {
-            return (
-              <Route
-                key={`submenu-item-${ii}`}
-                path={`/${subMenuItem.key}`}
-                element={subMenuItem.element}
-              />
-            )
-          })
-        }
+          if (submenu) {
+            return submenu.map((subMenuItem, ii) => {
+              return (
+                <Route
+                  key={`submenu-item-${ii}`}
+                  path={`/${langCode}${subMenuItem.key}`}
+                  element={subMenuItem.element}
+                />
+              )
+            })
+          }
 
-        return (
-          <Route key={i} path={`/${menuItem.key}`} element={menuItem.element} />
-        )
+          return (
+            <Route
+              key={i}
+              path={`/${langCode}${menuItem.key}`}
+              element={menuItem.element}
+            />
+          )
+        })
       })}
 
-      {nonMenuRoutes.map((route) => {
-        return (
-          <Route
-            key={route.key}
-            path={`/${route.path}`}
-            element={route.element}
-          />
-        )
+      {availableLanguages.map((lang, ii) => {
+        const langCode = lang.name === 'en' ? '' : `${lang}/`
+
+        nonMenuRoutes.map((route) => {
+          console.log(route)
+          return (
+            <Route
+              key={route.key}
+              path={`/${langCode}${route.path}`}
+              element={route.element}
+            />
+          )
+        })
       })}
       <Route path="*" element={<HomePage />} />
     </Routes>
