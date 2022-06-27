@@ -18,11 +18,9 @@ const ThemeSwitch: React.FC<ThemeSwitchProps> = ({}) => {
     ) {
       // console.log('User prefers dark')
       actions.setTheme('bitil-theme', 'bitil-dark')
-      setIsDark(true)
     } else {
       // console.log('User prefers light')
       actions.setTheme('bitil-theme', 'bitil-light')
-      setIsDark(false)
     }
   }, [])
 
@@ -36,7 +34,6 @@ const ThemeSwitch: React.FC<ThemeSwitchProps> = ({}) => {
 
   const toggleDarkMode = () => {
     // console.log(isDark)
-
     setIsDark(!isDark)
     isDark
       ? actions.setTheme('bitil-theme', 'bitil-dark')
@@ -44,17 +41,16 @@ const ThemeSwitch: React.FC<ThemeSwitchProps> = ({}) => {
   }
 
   return (
-    <StyledThemeSwitch id="ThemeSwitch">
-      <Switch
-        onChange={toggleDarkMode}
-        checked={isDark}
-        checkedChildren="🌙"
-        unCheckedChildren="☀️"
-      />
-    </StyledThemeSwitch>
+    <StyledThemeSwitch
+      id="ThemeSwitch"
+      onChange={toggleDarkMode}
+      checked={isDark}
+      checkedChildren="🌙"
+      unCheckedChildren="☀️"
+    />
   )
 }
 
 export default ThemeSwitch
 
-const StyledThemeSwitch = styled.div``
+const StyledThemeSwitch = styled(Switch)``
