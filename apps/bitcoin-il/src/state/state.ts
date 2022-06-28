@@ -6,5 +6,5 @@ export interface LanguageAtomValue {
 
 export const currentlySelectedLanguage = atom<LanguageAtomValue>({
   key: 'currentlySelectedLanguage',
-  default: { language: 'asdhjkasdhkajshdkjash' }
+  default: { language: 'en' }
 })
