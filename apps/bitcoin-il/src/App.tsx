@@ -16,8 +16,16 @@ import Support from './support'
 import Theme from './themes'
 import { useIntl } from './hooks/useIntl'
 
+const suppressErrors = true
+// const supressErrors = false
+
 function App(): JSX.Element {
   // const { language, messages, locale } = useIntl()
+
+  if (suppressErrors)
+    console.error = () => {
+      console.log('Suppressed Error')
+    }
 
   const intl = useIntl()
   const { availableLanguages, language, setLanguage } = intl
@@ -26,7 +34,6 @@ function App(): JSX.Element {
     <Routes>
       {availableLanguages.map((lang, ii) => {
         const langCode = lang.name === 'en' ? '' : `${lang}/`
-        console.log(lang)
         return mainMenuItems.map((menuItem, i) => {
           const { submenu } = menuItem
 
@@ -56,7 +63,6 @@ function App(): JSX.Element {
         const langCode = lang.name === 'en' ? '' : `${lang}/`
 
         nonMenuRoutes.map((route) => {
-          console.log(route)
           return (
             <Route
               key={route.key}
