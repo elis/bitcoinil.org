@@ -7,6 +7,7 @@ import HeaderMenu from './HeaderMenu'
 import { HeaderProps } from './Interfaces'
 import LanguageSelect from './LanguageSelect'
 import logo from './img/logo.svg'
+import ThemeSwitch from './ThemeSwitch'
 
 const Header: React.FC<HeaderProps> = ({ setLanguage }) => {
   const navigate = useNavigate()
@@ -26,6 +27,7 @@ const Header: React.FC<HeaderProps> = ({ setLanguage }) => {
         <HeaderMenu />
       </div>
       <div className="header-right">
+        <ThemeSwitch />
         <LanguageSelect setLanguage={setLanguage} />
         <BurgerMenu />
       </div>
@@ -63,6 +65,12 @@ const StyledHeader = styled.div`
     .header-middle {
       display: none;
     }
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 `
 
