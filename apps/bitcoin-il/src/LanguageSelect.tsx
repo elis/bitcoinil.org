@@ -8,6 +8,7 @@ import { LanguageSelectProps, LongNamesForLanguageType } from './Interfaces'
 import ico_angle from './img/ico_angle.svg'
 import { useRecoilState } from 'recoil'
 import { currentlySelectedLanguage } from './state/state'
+import { useLocation } from 'react-router-dom'
 
 const longNamesForLanguages: LongNamesForLanguageType = {
   he: 'עִברִית',
@@ -16,14 +17,17 @@ const longNamesForLanguages: LongNamesForLanguageType = {
 
 const LanguageSelect: React.FC<LanguageSelectProps> = ({ setLanguage }) => {
   const intl = useIntl()
-  const { availableLanguages } = intl
+  const { availableLanguages, customNavigate } = intl
   const [current, setCurrent] = React.useState('en')
   const [, setAtomLang] = useRecoilState(currentlySelectedLanguage)
+  const location = useLocation()
 
   const onClick = (e: any) => {
+    // console.log(location.pathname)
     setLanguage(e.key)
     setCurrent(e.key)
     setAtomLang({ language: e.key })
+    customNavigate(location.pathname, e.key)
   }
 
   return (

@@ -2,6 +2,7 @@ import { Menu } from 'antd'
 import * as React from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
+import CustomNavLink from './CustomNavLink'
 import { BurgerMenuMenuProps, MainMenuItem } from './Interfaces'
 import { mainMenuItems } from './mainMenuItems'
 
@@ -28,7 +29,10 @@ const BurgerMenuMenu: React.FC<BurgerMenuMenuProps> = ({ setMenuOpen }) => {
                       className="grey-submenu-item"
                       key={subItem.key}
                     >
-                      <NavLink to={`/${subItem.key}`}>{subItem.label}</NavLink>
+                      <CustomNavLink to={`/${subItem.key}`}>
+                        {subItem.label}
+                      </CustomNavLink>
+                      {/* <NavLink to={`/${subItem.key}`}>{subItem.label}</NavLink> */}
                     </Menu.Item>
                   )
                 })}
@@ -37,9 +41,12 @@ const BurgerMenuMenu: React.FC<BurgerMenuMenuProps> = ({ setMenuOpen }) => {
           }
           return (
             <Menu.Item key={item.key}>
-              <NavLink to={`/${item.key}`}>
+              <CustomNavLink to={`/${item.key}`}>
                 <p>{item.label}</p>
-              </NavLink>
+              </CustomNavLink>
+              {/* <NavLink to={`/${item.key}`}>
+                <p>{item.label}</p>
+              </NavLink> */}
             </Menu.Item>
           )
         })}

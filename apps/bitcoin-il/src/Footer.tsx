@@ -6,6 +6,7 @@ import SiteButton from './BitcoinSiteButton'
 import { phoneDevices } from './breakpoints'
 import { mainMenuItems } from './mainMenuItems'
 import logo from './img/logo.svg'
+import CustomNavLink from './CustomNavLink'
 
 interface FooterProps {}
 
@@ -47,9 +48,12 @@ const Footer: React.FC<FooterProps> = ({}) => {
           <ul>
             {menuItem.submenu.map((subMenuItem, ii) => {
               return (
-                <NavLink key={ii} to={`/${subMenuItem.key}`}>
+                <CustomNavLink key={ii} to={`/${subMenuItem.key}`}>
                   <li className="submenu-item">{subMenuItem.label}</li>
-                </NavLink>
+                </CustomNavLink>
+                // <NavLink key={ii} to={`/${subMenuItem.key}`}>
+                //   <li className="submenu-item">{subMenuItem.label}</li>
+                // </NavLink>
               )
             })}
           </ul>

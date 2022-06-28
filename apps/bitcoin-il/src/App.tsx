@@ -4,20 +4,19 @@ import 'antd/dist/antd.css' // or 'antd/dist/antd.less'
 import * as React from 'react'
 import { Helmet } from 'react-helmet'
 import { IntlProvider } from 'react-intl'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
 import styled from 'styled-components'
 import { phoneDevices } from './breakpoints'
 import Footer from './Footer'
 import Header from './Header'
 import HomePage from './HomePage'
+import { useIntl } from './hooks/useIntl'
 import { mainMenuItems } from './mainMenuItems'
 import { nonMenuRoutes } from './nonMenuRoutes'
+import { currentlySelectedLanguage } from './state/state'
 import Support from './support'
 import Theme from './themes'
-import { useIntl } from './hooks/useIntl'
-import { RecoilRoot } from 'recoil'
-import { useRecoilState, useSetRecoilState } from 'recoil'
-import { currentlySelectedLanguage } from './state/state'
 
 const suppressErrors = true
 // const supressErrors = false
@@ -25,10 +24,28 @@ const suppressErrors = true
 function App(): JSX.Element {
   // const { language, messages, locale } = useIntl()
   const [ln, setLn] = React.useState('en')
+  const nav = useNavigate()
+  const { customNavigate } = useIntl()
 
-  const [atomLang, setAtomLang] = useRecoilState(currentlySelectedLanguage)
+  const atomLang = useRecoilValue(currentlySelectedLanguage)
 
-  console.log(atomLang)
+  const location = useLocation()
+
+  React.useEffect(() => {
+    //
+    if (
+      atomLang.language !== 'en' &&
+      !location.pathname.startsWith(`/${atomLang.language}/`)
+    ) {
+      customNavigate(`${location.pathname}`)
+    }
+
+    // if (atomLang.language === 'en') {
+    //   console.log('🇬🇧 language switched to ENG')
+    //   console.log(location.pathname.substring(3))
+    //   // nav(location.pathname.substring(3))
+    // }
+  }, [location, atomLang])
 
   if (suppressErrors)
     console.error = () => {
@@ -41,7 +58,8 @@ function App(): JSX.Element {
   const renderRoutes = () => (
     <Routes>
       {availableLanguages.map((lang, ii) => {
-        const langCode = lang.name === 'en' ? '' : `${lang}/`
+        // console.log('🇬🇧', lang)
+        const langCode = lang.name === 'en' ? '' : `${lang.name}/`
         return mainMenuItems.map((menuItem, i) => {
           const { submenu } = menuItem
 

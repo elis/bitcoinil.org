@@ -4,15 +4,18 @@ import styled from 'styled-components'
 import SiteButton from './BitcoinSiteButton'
 import { useNavigate } from 'react-router-dom'
 import { phoneDevices } from './breakpoints'
+import { useIntl } from './hooks/useIntl'
 
 export default function HomepageButtons(): JSX.Element {
   const navigate = useNavigate()
+  const { customNavigate } = useIntl()
   return (
     <StyledHomepageButtons>
       <div className="homepage-buttons">
         <SiteButton
           onClick={() => {
-            navigate('/getting-started')
+            // navigate('/getting-started')
+            customNavigate('/getting-started')
           }}
           type="primary"
         >
@@ -24,7 +27,8 @@ export default function HomepageButtons(): JSX.Element {
         </SiteButton>
         <SiteButton
           onClick={() => {
-            navigate('/choose-your-wallet')
+            customNavigate('/choose-your-wallet')
+            // navigate('/choose-your-wallet')
           }}
           type="default"
         >
@@ -34,7 +38,13 @@ export default function HomepageButtons(): JSX.Element {
             description={`Choose Wallet`}
           />
         </SiteButton>
-        <SiteButton onClick={() => navigate('/buy')} type="default">
+        <SiteButton
+          onClick={() => {
+            // navigate('/buy')
+            customNavigate('/buy')
+          }}
+          type="default"
+        >
           <FormattedMessage
             id={`homepage.buy-bitcoin`}
             defaultMessage={`Buy Bitcoin`}
