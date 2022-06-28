@@ -15,6 +15,9 @@ import { nonMenuRoutes } from './nonMenuRoutes'
 import Support from './support'
 import Theme from './themes'
 import { useIntl } from './hooks/useIntl'
+import { RecoilRoot } from 'recoil'
+import { useRecoilState, useSetRecoilState } from 'recoil'
+import { currentlySelectedLanguage } from './state/state'
 
 const suppressErrors = true
 // const supressErrors = false
@@ -22,6 +25,10 @@ const suppressErrors = true
 function App(): JSX.Element {
   // const { language, messages, locale } = useIntl()
   const [ln, setLn] = React.useState('en')
+
+  const [atomLang, setAtomLang] = useRecoilState(currentlySelectedLanguage)
+
+  console.log(atomLang)
 
   if (suppressErrors)
     console.error = () => {
