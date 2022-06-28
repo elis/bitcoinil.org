@@ -5,7 +5,7 @@ import * as React from 'react'
 import { Helmet } from 'react-helmet'
 import { IntlProvider } from 'react-intl'
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
-import { useRecoilValue } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import styled from 'styled-components'
 import { phoneDevices } from './breakpoints'
 import Footer from './Footer'
@@ -14,6 +14,7 @@ import HomePage from './HomePage'
 import { useIntl } from './hooks/useIntl'
 import { mainMenuItems } from './mainMenuItems'
 import { nonMenuRoutes } from './nonMenuRoutes'
+import NotARoute from './NotARoute'
 import { currentlySelectedLanguage } from './state/state'
 import Support from './support'
 import Theme from './themes'
@@ -22,30 +23,31 @@ const suppressErrors = true
 // const supressErrors = false
 
 function App(): JSX.Element {
-  // const { language, messages, locale } = useIntl()
   const [ln, setLn] = React.useState('en')
   const nav = useNavigate()
   const { customNavigate } = useIntl()
 
-  const atomLang = useRecoilValue(currentlySelectedLanguage)
+  const [atomLang, setAtomLang] = useRecoilState(currentlySelectedLanguage)
 
   const location = useLocation()
 
   React.useEffect(() => {
-    //
     if (
       atomLang.language !== 'en' &&
       !location.pathname.startsWith(`/${atomLang.language}/`)
     ) {
       customNavigate(`${location.pathname}`)
     }
-
-    // if (atomLang.language === 'en') {
-    //   console.log('🇬🇧 language switched to ENG')
-    //   console.log(location.pathname.substring(3))
-    //   // nav(location.pathname.substring(3))
-    // }
   }, [location, atomLang])
+
+  React.useEffect(() => {
+    availableLanguages.forEach((avLang) => {
+      if (location.pathname.startsWith(`/${avLang.name}`)) {
+        setLn(location.pathname.substring(1, 3))
+        setAtomLang({ language: location.pathname.substring(1, 3) })
+      }
+    })
+  }, [])
 
   if (suppressErrors)
     console.error = () => {
@@ -98,7 +100,19 @@ function App(): JSX.Element {
           )
         })
       })}
-      <Route path="*" element={<HomePage />} />
+
+      {availableLanguages.map((lang, i) => {
+        // console.log(lang.name)
+        const base = lang.name === 'en' ? '' : lang.name
+        return (
+          <Route
+            key={`base-route-${i}`}
+            path={`${base}/`}
+            element={<HomePage />}
+          />
+        )
+      })}
+      <Route path="*" element={<NotARoute />} />
     </Routes>
   )
 

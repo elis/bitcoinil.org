@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
-import { Messages, TranslationDictionary } from '../Interfaces'
+
+import { Messages } from '../Interfaces'
 import { currentlySelectedLanguage } from '../state/state'
 import { messages_en } from '../translations/en'
 import { messages_he } from '../translations/he'
