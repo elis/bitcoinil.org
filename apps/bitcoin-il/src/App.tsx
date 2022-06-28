@@ -1,6 +1,4 @@
 import locales from '@bitil/locales'
-import '@djitsu/themes/dist/themes/main-theme/main-theme-main-light.css'
-import 'antd/dist/antd.css' // or 'antd/dist/antd.less'
 import * as React from 'react'
 import { Helmet } from 'react-helmet'
 import { IntlProvider } from 'react-intl'
