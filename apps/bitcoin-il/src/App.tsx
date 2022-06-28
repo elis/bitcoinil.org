@@ -21,6 +21,7 @@ const suppressErrors = true
 
 function App(): JSX.Element {
   // const { language, messages, locale } = useIntl()
+  const [ln, setLn] = React.useState('en')
 
   if (suppressErrors)
     console.error = () => {
@@ -28,7 +29,7 @@ function App(): JSX.Element {
     }
 
   const intl = useIntl()
-  const { availableLanguages, language, setLanguage } = intl
+  const { availableLanguages } = intl
 
   const renderRoutes = () => (
     <Routes>
@@ -89,14 +90,14 @@ function App(): JSX.Element {
         </Helmet>
         <IntlProvider
           // @ts-ignore
-          messages={locales[language]}
-          locale={language}
+          messages={locales[ln]}
+          locale={ln}
           defaultLocale="en"
         >
           <div className="App">
             {/* <DevTools /> */}
             <Support />
-            <Header setLanguage={setLanguage} />
+            <Header setLanguage={setLn} />
             {renderRoutes()}
           </div>
           <Footer />
