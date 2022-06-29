@@ -34,6 +34,7 @@ const LanguageSelect: React.FC<LanguageSelectProps> = ({ setLanguage }) => {
   const onClick = (e: any) => {
     // console.log(location.pathname)
     setLanguage(e.key)
+
     setCurrent(e.key)
     setAtomLang({ language: e.key })
 
