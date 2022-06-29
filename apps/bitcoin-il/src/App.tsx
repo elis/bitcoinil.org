@@ -133,6 +133,9 @@ function App(): JSX.Element {
         >
           <div className="App">
             {/* <DevTools /> */}
+            <div>
+              <h1> What is this that stands before me?</h1>
+            </div>
             <Support />
             <Header setLanguage={setLn} />
             {renderRoutes()}
