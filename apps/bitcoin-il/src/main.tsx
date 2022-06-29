@@ -3,13 +3,13 @@ import * as ReactDOM from 'react-dom'
 import App from './App'
 import { HashRouter as Router } from 'react-router-dom'
 
-console.log('BASE_PATH:', import.meta.env.BASE_PATH || '/', {
-  env: import.meta.env.BASE_PATH,
+console.log('BASE_URL:', import.meta.env.BASE_URL || '/', {
+  env: import.meta.env.BASE_URL,
   def: '/'
 })
 
 ReactDOM.render(
-  <Router basename={import.meta.env.BASE_PATH || '/'}>
+  <Router basename={import.meta.env.BASE_URL || '/'}>
     <React.StrictMode>
       <App />
     </React.StrictMode>

@@ -10,7 +10,10 @@ const { createContext, useContext, useMemo, useState } = React
 const showDebugButton = false
 // const showDebugButton = true
 
-const BASE_PATH = import.meta.env.BASE_PATH || '/'
+const BASE_URL = import.meta.env.BASE_URL || '/'
+console.log('Base Path:', [...import.meta.env.BASE_URL?.split('') || []])
+
+console.log('🚨 ENV DUMP:', import.meta.env)
 
 export type ThemeContextValue = [ThemeContextState, ThemeContextActions]
 export interface ThemeContextState {
@@ -74,8 +77,8 @@ const Theme = ({ children }: Props) => {
           ({ isDark }: CompiledVariant) => isDark
         )
         return [
-          variantLight && `${BASE_PATH}themes/${variantLight.css}`,
-          variantDark && `${BASE_PATH}themes/${variantDark.css}`
+          variantLight && `${BASE_URL}themes/${variantLight.css}`,
+          variantDark && `${BASE_URL}themes/${variantDark.css}`
         ]
       }
       const variant = theme?.variants.find(
@@ -84,7 +87,7 @@ const Theme = ({ children }: Props) => {
 
       if (!variant) return null
 
-      return [`${BASE_PATH}themes/${variant.css}`]
+      return [`${BASE_URL}themes/${variant.css}`]
     }, [state.active.variant, state.active.theme]) || []
 
   const fontHref = useMemo(() => {
