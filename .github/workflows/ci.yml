@@ -40,7 +40,7 @@ jobs:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           NOTION_PAGE: ${{ secrets.NOTION_PAGE }}
         run: |
-          yarn build --filter=bitcoin-il
+          yarn build --filter=bitcoin-il --filter=@djitsu/themes
 
       - name: Init new repo in dist folder and commit generated files
         run: |
