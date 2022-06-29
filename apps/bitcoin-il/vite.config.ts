@@ -1,15 +1,17 @@
-import reactRefresh from "@vitejs/plugin-react-refresh";
-import { defineConfig } from "vite";
+import reactRefresh from '@vitejs/plugin-react-refresh'
+import { defineConfig } from 'vite'
 import { viteStaticCopy } from 'vite-plugin-static-copy'
 import dotenv from 'dotenv'
 dotenv.config()
 
+console.log('🏘 DOTENV BASE_URL:', process.env.BASE_URL)
 
-console.log('🏘 DOTENV BASE_PATH:', process.env.BASE_PATH)
+console.log('Base Path:', [...process.env.BASE_URL?.split('') || []])
 
 export default defineConfig({
-  plugins: [reactRefresh(),
-  
+  plugins: [
+    reactRefresh(),
+
     viteStaticCopy({
       targets: [
         {
@@ -26,12 +28,12 @@ export default defineConfig({
       }
     })
   ],
-  base: process.env.BASE_PATH || '/',
+  base: process.env.BASE_URL || '/',
   server: {
     hmr: {
-      protocol: "ws",
-      host: "localhost",
+      protocol: 'ws',
+      host: 'localhost',
       port: 39911
     }
   }
-});
+})
