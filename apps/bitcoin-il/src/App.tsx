@@ -2,52 +2,115 @@ import locales from '@bitil/locales'
 import * as React from 'react'
 import { Helmet } from 'react-helmet'
 import { IntlProvider } from 'react-intl'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import styled from 'styled-components'
 import { phoneDevices } from './breakpoints'
 import Footer from './Footer'
 import Header from './Header'
 import HomePage from './HomePage'
+import { useIntl } from './hooks/useIntl'
 import { mainMenuItems } from './mainMenuItems'
 import { nonMenuRoutes } from './nonMenuRoutes'
+import NotARoute from './NotARoute'
+import { currentlySelectedLanguage } from './state/state'
 import Support from './support'
 import Theme from './themes'
 
+// const suppressErrors = true
+const suppressErrors = false
+
 function App(): JSX.Element {
-  // const { language, messages, locale } = useIntl()
   const [ln, setLn] = React.useState('en')
+  const nav = useNavigate()
+  const { customNavigate } = useIntl()
+
+  const [atomLang, setAtomLang] = useRecoilState(currentlySelectedLanguage)
+
+  const location = useLocation()
+
+  React.useEffect(() => {
+    if (
+      atomLang.language !== 'en' &&
+      !location.pathname.startsWith(`/${atomLang.language}/`)
+    ) {
+      customNavigate(`${location.pathname}`)
+    }
+  }, [location, atomLang])
+
+  React.useEffect(() => {
+    availableLanguages.forEach((avLang) => {
+      if (location.pathname.startsWith(`/${avLang.name}`)) {
+        setLn(location.pathname.substring(1, 3))
+        setAtomLang({ language: location.pathname.substring(1, 3) })
+      }
+    })
+  }, [])
+
+  if (suppressErrors)
+    console.error = () => {
+      console.log('Suppressed Error')
+    }
+
+  const intl = useIntl()
+  const { availableLanguages } = intl
+
   const renderRoutes = () => (
     <Routes>
-      {mainMenuItems.map((menuItem, i) => {
-        const { submenu } = menuItem
+      {availableLanguages.map((lang, ii) => {
+        // console.log('🇬🇧', lang)
+        const langCode = lang.name === 'en' ? '' : `${lang.name}/`
+        return mainMenuItems.map((menuItem, i) => {
+          const { submenu } = menuItem
 
-        if (submenu) {
-          return submenu.map((subMenuItem, ii) => {
-            return (
-              <Route
-                key={`submenu-item-${ii}`}
-                path={`/${subMenuItem.key}`}
-                element={subMenuItem.element}
-              />
-            )
-          })
-        }
+          if (submenu) {
+            return submenu.map((subMenuItem, ii) => {
+              return (
+                <Route
+                  key={`submenu-item-${ii}`}
+                  path={`/${langCode}${subMenuItem.key}`}
+                  element={subMenuItem.element}
+                />
+              )
+            })
+          }
 
-        return (
-          <Route key={i} path={`/${menuItem.key}`} element={menuItem.element} />
-        )
+          return (
+            <Route
+              key={i}
+              path={`/${langCode}${menuItem.key}`}
+              element={menuItem.element}
+            />
+          )
+        })
       })}
 
-      {nonMenuRoutes.map((route) => {
+      {availableLanguages.map((lang, ii) => {
+        const langCode = lang.name === 'en' ? '' : `${lang}/`
+
+        nonMenuRoutes.map((route) => {
+          return (
+            <Route
+              key={route.key}
+              path={`/${langCode}${route.path}`}
+              element={route.element}
+            />
+          )
+        })
+      })}
+
+      {availableLanguages.map((lang, i) => {
+        // console.log(lang.name)
+        const base = lang.name === 'en' ? '' : lang.name
         return (
           <Route
-            key={route.key}
-            path={`/${route.path}`}
-            element={route.element}
+            key={`base-route-${i}`}
+            path={`${base}/`}
+            element={<HomePage />}
           />
         )
       })}
-      <Route path="*" element={<HomePage />} />
+      <Route path="*" element={<NotARoute />} />
     </Routes>
   )
 

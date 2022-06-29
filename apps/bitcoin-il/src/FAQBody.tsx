@@ -100,7 +100,6 @@ const FAQBody: React.FC<FAQBodyProps> = ({}) => {
       </div>
       <div className="faq-right">
         {FAQ.map((faq, i) => {
-          console.log('🍔', faq)
           return (
             <>
               <h1 className="faq-category-heading faq-accented-header">
@@ -108,7 +107,6 @@ const FAQBody: React.FC<FAQBodyProps> = ({}) => {
               </h1>
               {faq.hasSubHeadings
                 ? faq.subHeadings?.map((subH, i) => {
-                    console.log(subH)
                     return (
                       <>
                         <h1 className="faq-subheading-title">

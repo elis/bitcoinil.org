@@ -9,6 +9,7 @@ import bitcoinImg from './img/bitcoin-img.svg'
 import SiteButton from './BitcoinSiteButton'
 import { NavLink } from 'react-router-dom'
 import { phoneDevices } from './breakpoints'
+import CustomNavLink from './CustomNavLink'
 
 interface GetStartedWithBitcoinProps {}
 
@@ -64,9 +65,12 @@ const GetStartedWithBitcoin: React.FC<GetStartedWithBitcoinProps> = ({}) => {
           </div>
         </div>
         <div className="get-started-body-bottom">
-          <NavLink to="/getting-started">
+          <CustomNavLink to="/getting-started">
             <SiteButton>Get Started with BitCoin Il</SiteButton>
-          </NavLink>
+          </CustomNavLink>
+          {/* <NavLink to="/getting-started">
+            <SiteButton>Get Started with BitCoin Il</SiteButton>
+          </NavLink> */}
         </div>
       </div>
     </StyledGetStartedWithBitcoin>
