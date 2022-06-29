@@ -22,6 +22,15 @@ const LanguageSelect: React.FC<LanguageSelectProps> = ({ setLanguage }) => {
   const [, setAtomLang] = useRecoilState(currentlySelectedLanguage)
   const location = useLocation()
 
+  React.useEffect(() => {
+    availableLanguages.forEach((avLang) => {
+      if (location.pathname.startsWith(`/${avLang.name}`)) {
+        setCurrent(avLang.name)
+        setAtomLang({ language: avLang.name })
+      }
+    })
+  }, [])
+
   const onClick = (e: any) => {
     // console.log(location.pathname)
     setLanguage(e.key)
