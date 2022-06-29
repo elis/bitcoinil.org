@@ -9,7 +9,7 @@ console.log('BASE_URL:', import.meta.env.BASE_URL || '/', {
 })
 
 ReactDOM.render(
-  <Router basename={import.meta.env.BASE_URL || '/'}>
+  <Router>
     <React.StrictMode>
       <App />
     </React.StrictMode>
