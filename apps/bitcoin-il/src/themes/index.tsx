@@ -11,9 +11,6 @@ const showDebugButton = false
 // const showDebugButton = true
 
 const BASE_URL = import.meta.env.BASE_URL || '/'
-console.log('Base Path:', [...import.meta.env.BASE_URL?.split('') || []])
-
-console.log('🚨 ENV DUMP:', import.meta.env)
 
 export type ThemeContextValue = [ThemeContextState, ThemeContextActions]
 export interface ThemeContextState {
@@ -41,7 +38,7 @@ type Props = {
   children: JSX.Element
 }
 const Theme = ({ children }: Props) => {
-  const [selectedTheme, selectedVariant] = ['bitil-theme', 'bitil-light']
+  const [selectedTheme, selectedVariant] = ['bitil-theme', '']
   const [activeState, setActiveState] = useState({
     theme: selectedTheme,
     variant: selectedVariant,
@@ -49,6 +46,34 @@ const Theme = ({ children }: Props) => {
   })
 
   const [showDebug, setShowDebug] = React.useState(false)
+  const [prefersDark, setPrefersDark] = React.useState(false)
+
+  const isPrefersDarkInitial = useMemo(() => {
+    if (
+      window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+    ) {
+      // dark mode
+      return true
+    }
+    return false
+  }, [])
+
+  React.useEffect(() => {
+    const handler = (event: any) => {
+      const newColorScheme = event.matches ? 'dark' : 'light'
+      setPrefersDark(newColorScheme === 'dark')
+    }
+    window
+      .matchMedia('(prefers-color-scheme: dark)')
+      .addEventListener('change', handler)
+
+    return () => {
+      window
+        .matchMedia('(prefers-color-scheme: dark)')
+        .removeEventListener('change', handler)
+    }
+  }, [])
 
   const state = {
     themes,
@@ -99,7 +124,14 @@ const Theme = ({ children }: Props) => {
     return theme.fontStylesheet
   }, [state.active.theme])
 
-  state.debug = { hrefLight, hrefDark, fontHref }
+  state.debug = {
+    activeState,
+    hrefLight,
+    hrefDark,
+    fontHref,
+    prefersDark,
+    isPrefersDarkInitial
+  }
 
   return (
     <ThemeContext.Provider value={[state, actions]}>

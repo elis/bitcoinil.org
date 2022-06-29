@@ -11,6 +11,7 @@
     "extract-intl": "formatjs extract \"src/**/*.{ts,tsx,js,jsx}\" --out-file lang.json"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.7.0",
     "@types/react-vertical-timeline-component": "^3.3.3",
     "@types/react-youtube": "^7.10.0",
     "add": "^2.0.6",
