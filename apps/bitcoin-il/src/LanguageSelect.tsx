@@ -36,6 +36,7 @@ const LanguageSelect: React.FC<LanguageSelectProps> = ({ setLanguage }) => {
     setLanguage(e.key)
     setCurrent(e.key)
     setAtomLang({ language: e.key })
+
     customNavigate(location.pathname, e.key)
   }
 
