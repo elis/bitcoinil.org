@@ -52,14 +52,14 @@ jobs:
           yarn build --filter=bitcoin-il
       
       - name: Custom file write
-        uses: actions/write-to-file@v1.0
+        uses: frdrwrt/write-to-file@v1.3
         with:
           filepath: ./apps/bitcoin-il/dist/TNAME
           content: TESTING
           mode: 0655
       
       - name: CNAME file write
-        uses: actions/write-to-file@v1.0
+        uses: frdrwrt/write-to-file@v1.3
         with:
           filepath: ./apps/bitcoin-il/dist/CNAME
           content: ${{ secrets.CUSTOM_CNAME }}
