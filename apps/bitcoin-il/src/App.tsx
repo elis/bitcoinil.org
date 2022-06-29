@@ -19,8 +19,8 @@ import { currentlySelectedLanguage } from './state/state'
 import Support from './support'
 import Theme from './themes'
 
-const suppressErrors = true
-// const supressErrors = false
+// const suppressErrors = true
+const suppressErrors = false
 
 function App(): JSX.Element {
   const [ln, setLn] = React.useState('en')
