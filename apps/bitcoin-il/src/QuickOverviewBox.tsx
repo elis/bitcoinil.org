@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { QuickOverviewBox } from './QuickOverview'
 import { NavLink } from 'react-router-dom'
 import { phoneDevices } from './breakpoints'
+import CustomNavLink from './CustomNavLink'
 
 const QuickOverviewBox: React.FC<QuickOverviewBox> = ({
   index,
@@ -17,7 +18,7 @@ const QuickOverviewBox: React.FC<QuickOverviewBox> = ({
   link
 }) => {
   return (
-    <NavLink to={link}>
+    <CustomNavLink to={link}>
       <StyledQuickOverviewBox id="QuickOverviewBox">
         <img src={imgSrc} />
         <div className="box-text">
@@ -39,7 +40,30 @@ const QuickOverviewBox: React.FC<QuickOverviewBox> = ({
           </p>
         </div>
       </StyledQuickOverviewBox>
-    </NavLink>
+    </CustomNavLink>
+    // <NavLink to={link}>
+    //   <StyledQuickOverviewBox id="QuickOverviewBox">
+    //     <img src={imgSrc} />
+    //     <div className="box-text">
+    //       <h4>
+    //         {/* <FormattedMessage
+    //           id={`${baseFormattedMessage}.individuals`}
+    //           defaultMessage={titleDefaultMessage}
+    //           description={titleDescription}
+    //         /> */}
+    //         {titleDefaultMessage}
+    //       </h4>
+    //       <p>
+    //         {/* <FormattedMessage
+    //           id={`${baseFormattedMessage}.individuals.learnmore`}
+    //           defaultMessage={subtitleDefaultMessage}
+    //           description={subtitleDescription}
+    //         /> */}
+    //         {subtitleDefaultMessage}
+    //       </p>
+    //     </div>
+    //   </StyledQuickOverviewBox>
+    // </NavLink>
   )
 }
 

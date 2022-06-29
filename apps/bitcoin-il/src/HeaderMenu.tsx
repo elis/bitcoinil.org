@@ -2,6 +2,7 @@ import { Menu } from 'antd'
 import * as React from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
+import CustomNavLink from './CustomNavLink'
 import Arrow from './img/ico_angle.svg'
 import { MainMenuItem } from './Interfaces'
 import { mainMenuItems } from './mainMenuItems'
@@ -30,7 +31,10 @@ export default function HeaderMenu(): JSX.Element {
                 {item.submenu.map((subItem: MainMenuItem) => {
                   return (
                     <Menu.Item key={subItem.key}>
-                      <NavLink to={`/${subItem.key}`}>{subItem.label}</NavLink>
+                      <CustomNavLink to={`/${subItem.key}`}>
+                        {subItem.label}
+                      </CustomNavLink>
+                      {/* <NavLink to={`/${subItem.key}`}>{subItem.label}</NavLink> */}
                     </Menu.Item>
                   )
                 })}
@@ -39,7 +43,8 @@ export default function HeaderMenu(): JSX.Element {
           }
           return (
             <Menu.Item key={item.key} onClick={() => console.log(item)}>
-              <NavLink to={`/${item.key}`}></NavLink>
+              <CustomNavLink to={`/${item.key}`}></CustomNavLink>
+              {/* <NavLink to={`/${item.key}`}></NavLink> */}
               <p>{item.label}</p>
             </Menu.Item>
           )

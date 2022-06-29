@@ -12,6 +12,7 @@ import lowfee from './img/ico_lowfee.svg'
 import mobile from './img/ico_mobile.svg'
 import simple from './img/ico_simple.svg'
 import { BodyCard, IndividualsBodyProps } from './Interfaces'
+import CustomNavLink from './CustomNavLink'
 
 const individualCards: BodyCard[] = [
   {
@@ -140,9 +141,12 @@ const IndividualsBody: React.FC<IndividualsBodyProps> = ({}) => {
     <StyledIndividualsBody id="IndividualsBody">
       <CardsDisplay cards={individualCards} />
       <div className="individuals-button">
-        <NavLink to="/getting-started">
+        <CustomNavLink to="/getting-started">
           <SiteButton type="primary">Get Started With BitCoin Il</SiteButton>
-        </NavLink>
+        </CustomNavLink>
+        {/* <NavLink to="/getting-started">
+          <SiteButton type="primary">Get Started With BitCoin Il</SiteButton>
+        </NavLink> */}
       </div>
     </StyledIndividualsBody>
   )

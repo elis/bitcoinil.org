@@ -8,20 +8,23 @@ import { HeaderProps } from './Interfaces'
 import LanguageSelect from './LanguageSelect'
 import logo from './img/logo.svg'
 import ThemeSwitch from './ThemeSwitch'
+import { useRecoilValue } from 'recoil'
+import { currentlySelectedLanguage } from './state/state'
+import { useIntl } from './hooks/useIntl'
+import CustomNavLink from './CustomNavLink'
 
 const Header: React.FC<HeaderProps> = ({ setLanguage }) => {
+  const atomLang = useRecoilValue(currentlySelectedLanguage)
   const navigate = useNavigate()
+  const { customNavigate } = useIntl()
   return (
     <StyledHeader id="Header">
       <div className="left">
-        <div
-          className="logo"
-          onClick={() => {
-            navigate('/')
-          }}
-        >
-          <img src={logo} />
-        </div>
+        <CustomNavLink to="/">
+          <div className="logo">
+            <img src={logo} />
+          </div>
+        </CustomNavLink>
       </div>
       <div className="header-middle">
         <HeaderMenu />
