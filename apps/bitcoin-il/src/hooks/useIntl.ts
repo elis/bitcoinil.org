@@ -14,10 +14,11 @@ export const useIntl = () => {
   const navigate = useNavigate()
 
   const customNavigate = (path: string, newLang?: string) => {
+    console.log(path)
     if (newLang === 'en') {
       navigate(path.substring(3))
     } else {
-      navigate(`/${newLang}/${path}`)
+      navigate(`${newLang}${path}`)
     }
   }
 
