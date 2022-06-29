@@ -5,12 +5,12 @@ import { HashRouter as Router } from 'react-router-dom'
 import { RecoilRoot } from 'recoil'
 
 ReactDOM.render(
-  <RecoilRoot>
-    <Router basename={import.meta.env.BASE_URL}>
+  <Router basename={import.meta.env.BASE_URL}>
+    <RecoilRoot>
       <React.StrictMode>
         <App />
       </React.StrictMode>
-    </Router>
-  </RecoilRoot>,
+    </RecoilRoot>
+  </Router>,
   document.getElementById('root')
 )
