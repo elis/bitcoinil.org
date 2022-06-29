@@ -2,17 +2,15 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import App from './App'
 import { HashRouter as Router } from 'react-router-dom'
-
-console.log('BASE_URL:', import.meta.env.BASE_URL || '/', {
-  env: import.meta.env.BASE_URL,
-  def: '/'
-})
+import { RecoilRoot } from 'recoil'
 
 ReactDOM.render(
   <Router>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <RecoilRoot>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </RecoilRoot>
   </Router>,
   document.getElementById('root')
 )
