@@ -54,7 +54,7 @@ jobs:
       - name: Add custom CNAME to app's dist 
         run:
           touch apps/bitcoin-il/dist/CNAME
-          echo ${{secrets.CUSTOM_CNAME}} >> apps/bitcoin-il/dist/CNAME
+          echo "${{secrets.CUSTOM_CNAME}}" >> apps/bitcoin-il/dist/CNAME
 
       - name: Init new repo in dist folder and commit generated files
         run: |
