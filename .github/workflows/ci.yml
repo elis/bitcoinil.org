@@ -50,6 +50,11 @@ jobs:
           echo NOTION_TOKEN=${{ secrets.NOTION_TOKEN }} >> packages/locales/.env
           echo NOTION_PAGE=${{ secrets.NOTION_PAGE }} >> packages/locales/.env
           yarn build --filter=bitcoin-il
+      
+      - name: Add custom CNAME to app's dist 
+        run:
+          touch apps/bitcoin-il/dist/CNAME
+          echo ${{secrets.CUSTOM_CNAME}} >> apps/bitcoin-il/dist/CNAME
 
       - name: Init new repo in dist folder and commit generated files
         run: |
