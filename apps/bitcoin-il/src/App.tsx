@@ -28,6 +28,10 @@ function App(): JSX.Element {
 
   const location = useLocation()
 
+  console.log('💻️ Version 1.0.0 - Renamed useIntl')
+
+  console.log(locale)
+
   React.useEffect(() => {
     if (
       ln.language !== 'en' &&
