@@ -19,14 +19,14 @@ const LanguageSelect: React.FC<LanguageSelectProps> = ({ setLanguage }) => {
   const intl = useIntl()
   const { availableLanguages, customNavigate } = intl
   const [current, setCurrent] = React.useState('en')
-  const [, setAtomLang] = useRecoilState(currentlySelectedLanguage)
+  const [, setLn] = useRecoilState(currentlySelectedLanguage)
   const location = useLocation()
 
   React.useEffect(() => {
     availableLanguages.forEach((avLang) => {
       if (location.pathname.startsWith(`/${avLang.name}`)) {
         setCurrent(avLang.name)
-        setAtomLang({ language: avLang.name })
+        setLn({ language: avLang.name })
       }
     })
   }, [])
@@ -35,7 +35,7 @@ const LanguageSelect: React.FC<LanguageSelectProps> = ({ setLanguage }) => {
     // console.log(location.pathname)
     setLanguage(e.key)
     setCurrent(e.key)
-    setAtomLang({ language: e.key })
+    setLn({ language: e.key })
     customNavigate(location.pathname, e.key)
   }
 
