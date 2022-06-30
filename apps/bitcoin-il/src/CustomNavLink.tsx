@@ -11,10 +11,10 @@ export interface CustomNavLinkProps {
 }
 
 const CustomNavLink: React.FC<CustomNavLinkProps> = ({ to, children }) => {
-  const atomLang = useRecoilValue(currentlySelectedLanguage)
+  const ln = useRecoilValue(currentlySelectedLanguage)
   //   console.log('👻👻👻', to)
 
-  const languageCode = atomLang.language === 'en' ? '' : `/${atomLang.language}`
+  const languageCode = ln.language === 'en' ? '' : `/${ln.language}`
   return <NavLink to={`${languageCode}${to}`}>{children}</NavLink>
 }
 
