@@ -28,7 +28,7 @@ const Header: React.FC<HeaderProps> = ({ setLanguage }) => {
           <ThemeSwitch />
           <LanguageSelect setLanguage={setLanguage} />
         </div>
-        <BurgerMenu />
+        <BurgerMenu setLanguage={setLanguage} />
       </div>
     </StyledHeader>
   )
