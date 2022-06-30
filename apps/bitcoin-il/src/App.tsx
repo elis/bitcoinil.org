@@ -25,6 +25,7 @@ function App(): JSX.Element {
   const { customNavigate } = useTranslations()
 
   const [ln, setLn] = useRecoilState(currentlySelectedLanguage)
+  const { locale } = useTranslations()
 
   const location = useLocation()
 
@@ -128,7 +129,7 @@ function App(): JSX.Element {
           <IntlProvider
             // @ts-ignore
             messages={locales[ln]}
-            locale={ln.language}
+            locale={locale}
             defaultLocale="en"
             onError={(err) => {
               // console.log('Error from translation:', err)
