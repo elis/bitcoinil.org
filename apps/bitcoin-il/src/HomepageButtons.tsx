@@ -2,13 +2,11 @@ import * as React from 'react'
 import { FormattedMessage } from 'react-intl'
 import styled from 'styled-components'
 import SiteButton from './BitcoinSiteButton'
-import { useNavigate } from 'react-router-dom'
 import { phoneDevices } from './breakpoints'
-import { useIntl } from './hooks/useIntl'
+import { useTranslations } from './hooks/useTranslations'
 
 export default function HomepageButtons(): JSX.Element {
-  const navigate = useNavigate()
-  const { customNavigate } = useIntl()
+  const { customNavigate } = useTranslations()
   return (
     <StyledHomepageButtons>
       <div className="homepage-buttons">
