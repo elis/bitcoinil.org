@@ -16,6 +16,7 @@ import NotARoute from './NotARoute'
 import { currentlySelectedLanguage } from './state/state'
 import Support from './support'
 import Theme from './themes'
+import { ConfigProvider } from 'antd'
 
 // const suppressErrors = true
 const suppressErrors = false
@@ -116,30 +117,32 @@ function App(): JSX.Element {
 
   return (
     <Theme>
-      <AppStyleWrap id="App">
-        <Helmet>
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200&display=swap"
-            rel="stylesheet"
-          />
-        </Helmet>
-        <IntlProvider
-          // @ts-ignore
-          messages={locales[ln]}
-          locale={ln}
-          defaultLocale="en"
-        >
-          <div className="App">
-            {/* <DevTools /> */}
-            <Support />
-            <Header setLanguage={setLn} />
-            {renderRoutes()}
-          </div>
-          <Footer />
-        </IntlProvider>
-      </AppStyleWrap>
+      <ConfigProvider direction={ln === 'he' ? 'rtl' : 'ltr'}>
+        <AppStyleWrap id="App">
+          <Helmet>
+            <link rel="preconnect" href="https://fonts.googleapis.com" />
+            <link rel="preconnect" href="https://fonts.gstatic.com" />
+            <link
+              href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200&display=swap"
+              rel="stylesheet"
+            />
+          </Helmet>
+          <IntlProvider
+            // @ts-ignore
+            messages={locales[ln]}
+            locale={ln}
+            defaultLocale="en"
+          >
+            <div className="App">
+              {/* <DevTools /> */}
+              <Support />
+              <Header setLanguage={setLn} />
+              {renderRoutes()}
+            </div>
+            <Footer />
+          </IntlProvider>
+        </AppStyleWrap>
+      </ConfigProvider>
     </Theme>
   )
 }
