@@ -24,8 +24,10 @@ const Header: React.FC<HeaderProps> = ({ setLanguage }) => {
         <HeaderMenu />
       </div>
       <div className="header-right">
-        <ThemeSwitch />
-        <LanguageSelect setLanguage={setLanguage} />
+        <div className="header-right-hide-on-mobile">
+          <ThemeSwitch />
+          <LanguageSelect setLanguage={setLanguage} />
+        </div>
         <BurgerMenu />
       </div>
     </StyledHeader>
@@ -72,6 +74,15 @@ const StyledHeader = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
+
+      &-hide-on-mobile {
+        display: flex;
+        align-items: center;
+
+        ${phoneDevices} {
+          display: none;
+        }
+      }
     }
   }
 `
