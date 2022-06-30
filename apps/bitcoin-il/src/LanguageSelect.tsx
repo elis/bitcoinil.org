@@ -3,12 +3,12 @@ import * as React from 'react'
 // import { FormattedMessage, IntlProvider } from "react-intl"
 import styled from 'styled-components'
 import { phoneDevices } from './breakpoints'
-import { useIntl } from './hooks/useIntl'
 import { LanguageSelectProps, LongNamesForLanguageType } from './Interfaces'
 import ico_angle from './img/ico_angle.svg'
 import { useRecoilState } from 'recoil'
 import { currentlySelectedLanguage } from './state/state'
 import { useLocation } from 'react-router-dom'
+import { useTranslations } from './hooks/useTranslations'
 
 const longNamesForLanguages: LongNamesForLanguageType = {
   he: 'עִברִית',
@@ -16,7 +16,7 @@ const longNamesForLanguages: LongNamesForLanguageType = {
 }
 
 const LanguageSelect: React.FC<LanguageSelectProps> = ({ setLanguage }) => {
-  const intl = useIntl()
+  const intl = useTranslations()
   const { availableLanguages, customNavigate } = intl
   const [current, setCurrent] = React.useState('en')
   const [, setLn] = useRecoilState(currentlySelectedLanguage)

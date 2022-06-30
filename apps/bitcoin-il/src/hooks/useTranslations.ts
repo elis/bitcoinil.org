@@ -1,16 +1,9 @@
 import * as React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useRecoilValue } from 'recoil'
 
-import { Messages } from '../Interfaces'
-import { currentlySelectedLanguage } from '../state/state'
-import { messages_en } from '../translations/en'
-import { messages_he } from '../translations/he'
-
-export const useIntl = () => {
+export const useTranslations = () => {
   const [language, setLanguage] = React.useState('en')
   const [locale, setLocale] = React.useState('en')
-  const atomLang = useRecoilValue(currentlySelectedLanguage)
   const navigate = useNavigate()
 
   const customNavigate = (path: string, newLang?: string) => {
@@ -20,11 +13,6 @@ export const useIntl = () => {
     } else {
       navigate(`${newLang}${path}`)
     }
-  }
-
-  const messages: Messages = {
-    he: messages_he,
-    en: messages_en
   }
 
   React.useEffect(() => {
@@ -39,7 +27,6 @@ export const useIntl = () => {
   return {
     language,
     setLanguage,
-    messages,
     availableLanguages,
     locale,
     customNavigate
