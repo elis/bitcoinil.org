@@ -4,6 +4,8 @@ import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import CustomNavLink from './CustomNavLink'
 import { BurgerMenuMenuProps, MainMenuItem } from './Interfaces'
+import LanguageSelect from './LanguageSelect'
+import LanguageSelectMobile from './LanguageSelectMobile'
 import { mainMenuItems } from './mainMenuItems'
 
 const BurgerMenuMenu: React.FC<BurgerMenuMenuProps> = ({ setMenuOpen }) => {
@@ -51,6 +53,7 @@ const BurgerMenuMenu: React.FC<BurgerMenuMenuProps> = ({ setMenuOpen }) => {
           )
         })}
       </Menu>
+      <LanguageSelectMobile />
     </StyledBurgerMenuMenu>
   )
 }
