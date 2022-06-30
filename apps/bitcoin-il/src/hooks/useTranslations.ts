@@ -1,8 +1,11 @@
 import * as React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useRecoilState } from 'recoil'
+
+import { currentlySelectedLanguage } from '../state/state'
 
 export const useTranslations = () => {
-  const [language, setLanguage] = React.useState('en')
+  const [ln, setLn] = useRecoilState(currentlySelectedLanguage)
   const [locale, setLocale] = React.useState('en')
   const navigate = useNavigate()
 
@@ -16,17 +19,18 @@ export const useTranslations = () => {
   }
 
   React.useEffect(() => {
-    if (language === 'he') setLocale('il')
-    setLocale(language)
-  }, [language])
+    if (ln.language === 'he') setLocale('il')
+    setLocale(ln.language)
+  }, [ln.language])
 
   const availableLanguages = [
     { name: 'en', icon: '🇬🇧', locale: 'en' },
     { name: 'he', icon: '🇮🇱', locale: 'il' }
   ]
+
   return {
-    language,
-    setLanguage,
+    language: ln,
+    setLanguage: setLn,
     availableLanguages,
     locale,
     customNavigate
