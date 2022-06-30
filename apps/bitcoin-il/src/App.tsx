@@ -35,7 +35,6 @@ function App(): JSX.Element {
       atomLang.language !== 'en' &&
       !location.pathname.startsWith(`/${atomLang.language}/`)
     ) {
-      customNavigate(`${location.pathname}`)
     }
   }, [location, atomLang])
 
