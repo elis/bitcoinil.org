@@ -11,6 +11,11 @@ export const useTranslations = () => {
   const navigate = useNavigate()
   const translatedMessages = locales
 
+  const availableLanguages = [
+    { name: 'en', icon: '🇬🇧', locale: 'en' },
+    { name: 'he', icon: '🇮🇱', locale: 'il' }
+  ]
+
   const customNavigate = (path: string, newLang?: string) => {
     console.log(path)
     if (newLang === 'en') {
@@ -21,14 +26,12 @@ export const useTranslations = () => {
   }
 
   React.useEffect(() => {
-    if (ln.language === 'he') setLocale('il')
-    setLocale(ln.language)
+    availableLanguages.forEach((avLang) => {
+      if (avLang.name === ln.language) {
+        setLocale(avLang.locale)
+      }
+    })
   }, [ln.language])
-
-  const availableLanguages = [
-    { name: 'en', icon: '🇬🇧', locale: 'en' },
-    { name: 'he', icon: '🇮🇱', locale: 'il' }
-  ]
 
   return {
     language: ln,
