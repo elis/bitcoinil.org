@@ -14,8 +14,7 @@ export default function HomepageButtons(): JSX.Element {
       <div className="homepage-buttons">
         <SiteButton
           onClick={() => {
-            // navigate('/getting-started')
-            customNavigate('/getting-started')
+            navigate('/getting-started')
           }}
           type="primary"
         >
@@ -27,8 +26,7 @@ export default function HomepageButtons(): JSX.Element {
         </SiteButton>
         <SiteButton
           onClick={() => {
-            customNavigate('/choose-your-wallet')
-            // navigate('/choose-your-wallet')
+            navigate('/choose-your-wallet')
           }}
           type="default"
         >
@@ -40,8 +38,7 @@ export default function HomepageButtons(): JSX.Element {
         </SiteButton>
         <SiteButton
           onClick={() => {
-            // navigate('/buy')
-            customNavigate('/buy')
+            navigate('/buy')
           }}
           type="default"
         >
