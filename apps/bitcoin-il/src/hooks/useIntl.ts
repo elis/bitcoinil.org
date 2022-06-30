@@ -1,3 +1,4 @@
+import { AvailableLanguage } from './../Interfaces'
 import * as React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useRecoilValue } from 'recoil'
@@ -32,9 +33,9 @@ export const useIntl = () => {
     setLocale(language)
   }, [language])
 
-  const availableLanguages = [
-    { name: 'en', icon: '🇬🇧', locale: 'en' },
-    { name: 'he', icon: '🇮🇱', locale: 'il' }
+  const availableLanguages: AvailableLanguage[] = [
+    { name: 'en', icon: '🇬🇧', locale: 'en', longName: 'English' },
+    { name: 'he', icon: '🇮🇱', locale: 'il', longName: 'עִברִית' }
   ]
   return {
     language,
