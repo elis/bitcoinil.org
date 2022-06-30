@@ -132,6 +132,11 @@ function App(): JSX.Element {
             messages={locales[ln]}
             locale={ln}
             defaultLocale="en"
+            onError={(err) => {
+              // console.log('Error from translation:', err)
+              // Here be collecting missing translations!
+              // Maybe shove them back to notion or something?
+            }}
           >
             <div className="App">
               {/* <DevTools /> */}
