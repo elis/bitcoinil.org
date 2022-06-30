@@ -56,7 +56,6 @@ export default function HeaderMenu(): JSX.Element {
 
 const StyledAppMenu = styled.div`
   .ant-menu {
-    width: 80vw;
     display: flex;
     align-items: center;
     justify-content: center;
