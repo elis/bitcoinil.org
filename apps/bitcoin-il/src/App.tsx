@@ -1,49 +1,47 @@
 import locales from '@bitil/locales'
+import { ConfigProvider } from 'antd'
 import * as React from 'react'
 import { Helmet } from 'react-helmet'
 import { IntlProvider } from 'react-intl'
-import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { Route, Routes, useLocation } from 'react-router-dom'
+import { useRecoilState } from 'recoil'
 import styled from 'styled-components'
 import { phoneDevices } from './breakpoints'
 import Footer from './Footer'
 import Header from './Header'
 import HomePage from './HomePage'
-import { useIntl } from './hooks/useIntl'
+import { useTranslations } from './hooks/useTranslations'
 import { mainMenuItems } from './mainMenuItems'
 import { nonMenuRoutes } from './nonMenuRoutes'
 import NotARoute from './NotARoute'
 import { currentlySelectedLanguage } from './state/state'
 import Support from './support'
 import Theme from './themes'
-import { ConfigProvider } from 'antd'
 
 // const suppressErrors = true
 const suppressErrors = false
 
 function App(): JSX.Element {
-  const [ln, setLn] = React.useState('en')
-  const nav = useNavigate()
-  const { customNavigate } = useIntl()
+  const { customNavigate } = useTranslations()
 
-  const [atomLang, setAtomLang] = useRecoilState(currentlySelectedLanguage)
+  const [ln, setLn] = useRecoilState(currentlySelectedLanguage)
 
   const location = useLocation()
 
   React.useEffect(() => {
     if (
-      atomLang.language !== 'en' &&
-      !location.pathname.startsWith(`/${atomLang.language}/`)
+      ln.language !== 'en' &&
+      !location.pathname.startsWith(`/${ln.language}/`)
     ) {
       customNavigate(`${location.pathname}`)
     }
-  }, [location, atomLang])
+  }, [location, ln])
 
   React.useEffect(() => {
     availableLanguages.forEach((avLang) => {
       if (location.pathname.startsWith(`/${avLang.name}`)) {
-        setLn(location.pathname.substring(1, 3))
-        setAtomLang({ language: location.pathname.substring(1, 3) })
+        setLn({ language: location.pathname.substring(1, 3) })
+        setLn({ language: location.pathname.substring(1, 3) })
       }
     })
   }, [])
@@ -53,7 +51,7 @@ function App(): JSX.Element {
       console.log('Suppressed Error')
     }
 
-  const intl = useIntl()
+  const intl = useTranslations()
   const { availableLanguages } = intl
 
   const renderRoutes = () => (
@@ -117,7 +115,7 @@ function App(): JSX.Element {
 
   return (
     <Theme>
-      <ConfigProvider direction={ln === 'he' ? 'rtl' : 'ltr'}>
+      <ConfigProvider direction={ln.language === 'he' ? 'rtl' : 'ltr'}>
         <AppStyleWrap id="App">
           <Helmet>
             <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -130,7 +128,7 @@ function App(): JSX.Element {
           <IntlProvider
             // @ts-ignore
             messages={locales[ln]}
-            locale={ln}
+            locale={ln.language}
             defaultLocale="en"
             onError={(err) => {
               // console.log('Error from translation:', err)
