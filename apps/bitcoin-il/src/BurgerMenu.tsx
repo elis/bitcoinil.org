@@ -4,7 +4,11 @@ import styled from 'styled-components'
 import { phoneDevices } from './breakpoints'
 import BurgerMenuMenu from './BurgerMenuMenu'
 
-const BurgerMenu = () => {
+interface BurgerMenuProps {
+  setLanguage: Function
+}
+
+const BurgerMenu: React.FC<BurgerMenuProps> = ({ setLanguage }) => {
   const [burgerOpen, setBurgerOpen] = useState(false)
 
   const toggleBurger = () => {
