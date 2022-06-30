@@ -1,4 +1,3 @@
-import locales from '@bitil/locales'
 import { ConfigProvider } from 'antd'
 import * as React from 'react'
 import { Helmet } from 'react-helmet'
@@ -25,7 +24,7 @@ function App(): JSX.Element {
   const { customNavigate } = useTranslations()
 
   const [ln, setLn] = useRecoilState(currentlySelectedLanguage)
-  const { locale } = useTranslations()
+  const { locale, translatedMessages } = useTranslations()
 
   const location = useLocation()
 
@@ -128,7 +127,7 @@ function App(): JSX.Element {
           </Helmet>
           <IntlProvider
             // @ts-ignore
-            messages={locales[ln]}
+            messages={translatedMessages[ln]}
             locale={locale}
             defaultLocale="en"
             onError={(err) => {
