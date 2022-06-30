@@ -3,12 +3,12 @@ import * as React from 'react'
 // import { FormattedMessage, IntlProvider } from "react-intl"
 import styled from 'styled-components'
 import { phoneDevices } from './breakpoints'
+import { useIntl } from './hooks/useIntl'
 import { LanguageSelectProps, LongNamesForLanguageType } from './Interfaces'
 import ico_angle from './img/ico_angle.svg'
 import { useRecoilState } from 'recoil'
 import { currentlySelectedLanguage } from './state/state'
 import { useLocation } from 'react-router-dom'
-import { useTranslations } from './hooks/useTranslations'
 
 const longNamesForLanguages: LongNamesForLanguageType = {
   he: 'עִברִית',
@@ -16,17 +16,17 @@ const longNamesForLanguages: LongNamesForLanguageType = {
 }
 
 const LanguageSelect: React.FC<LanguageSelectProps> = ({ setLanguage }) => {
-  const intl = useTranslations()
+  const intl = useIntl()
   const { availableLanguages, customNavigate } = intl
   const [current, setCurrent] = React.useState('en')
-  const [, setLn] = useRecoilState(currentlySelectedLanguage)
+  const [, setAtomLang] = useRecoilState(currentlySelectedLanguage)
   const location = useLocation()
 
   React.useEffect(() => {
     availableLanguages.forEach((avLang) => {
       if (location.pathname.startsWith(`/${avLang.name}`)) {
         setCurrent(avLang.name)
-        setLn({ language: avLang.name })
+        setAtomLang({ language: avLang.name })
       }
     })
   }, [])
@@ -35,7 +35,7 @@ const LanguageSelect: React.FC<LanguageSelectProps> = ({ setLanguage }) => {
     // console.log(location.pathname)
     setLanguage(e.key)
     setCurrent(e.key)
-    setLn({ language: e.key })
+    setAtomLang({ language: e.key })
     customNavigate(location.pathname, e.key)
   }
 
