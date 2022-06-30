@@ -45,7 +45,7 @@ export interface Messages {
 }
 
 export interface BurgerMenuMenuProps {
-  setMenuOpen: Function
+  setLanguage: Function
 }
 
 export interface QuickOverviewBox {
