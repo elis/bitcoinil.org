@@ -1,21 +1,34 @@
 import { Menu } from 'antd'
 import * as React from 'react'
-import { NavLink } from 'react-router-dom'
+import { useRecoilState } from 'recoil'
 import styled from 'styled-components'
+
 import CustomNavLink from './CustomNavLink'
 import { BurgerMenuMenuProps, MainMenuItem } from './Interfaces'
-import LanguageSelect from './LanguageSelect'
 import LanguageSelectMobile from './LanguageSelectMobile'
 import { mainMenuItems } from './mainMenuItems'
+import { isBurgerMenuOpen } from './state/state'
 
-const BurgerMenuMenu: React.FC<BurgerMenuMenuProps> = ({ setMenuOpen }) => {
+const BurgerMenuMenu: React.FC<BurgerMenuMenuProps> = ({ setLanguage }) => {
+  const [, setMenuOpen] = useRecoilState(isBurgerMenuOpen)
+  const [openKeys, setOpenKeys] = React.useState([])
+
+  const onOpenChange = (keys: any) => {
+    setOpenKeys(keys)
+  }
+
   return (
     <StyledBurgerMenuMenu>
       <Menu
         defaultSelectedKeys={['1']}
-        defaultOpenKeys={['sub1']}
+        defaultOpenKeys={[]}
         mode="inline"
-        onClick={() => setMenuOpen(false)}
+        openKeys={openKeys}
+        onClick={() => {
+          setOpenKeys([])
+          setMenuOpen(false)
+        }}
+        onOpenChange={onOpenChange}
       >
         {mainMenuItems.map((item: any) => {
           if (item.submenu) {
@@ -53,7 +66,7 @@ const BurgerMenuMenu: React.FC<BurgerMenuMenuProps> = ({ setMenuOpen }) => {
           )
         })}
       </Menu>
-      <LanguageSelectMobile />
+      <LanguageSelectMobile setLanguage={setLanguage} />
     </StyledBurgerMenuMenu>
   )
 }
