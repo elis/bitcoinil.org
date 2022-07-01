@@ -1,10 +1,12 @@
 import locales from '@bitil/locales'
+import { ConfigProvider } from 'antd'
 import * as React from 'react'
 import { Helmet } from 'react-helmet'
 import { IntlProvider } from 'react-intl'
-import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { Route, Routes, useLocation } from 'react-router-dom'
+import { useRecoilState } from 'recoil'
 import styled from 'styled-components'
+
 import { phoneDevices } from './breakpoints'
 import Footer from './Footer'
 import Header from './Header'
@@ -16,17 +18,13 @@ import NotARoute from './NotARoute'
 import { currentlySelectedLanguage } from './state/state'
 import Support from './support'
 import Theme from './themes'
-import { ConfigProvider } from 'antd'
 
 // const suppressErrors = true
 const suppressErrors = false
 
 function App(): JSX.Element {
   const [ln, setLn] = useRecoilState(currentlySelectedLanguage)
-  const nav = useNavigate()
-
   const [atomLang, setAtomLang] = useRecoilState(currentlySelectedLanguage)
-
   const location = useLocation()
 
   React.useEffect(() => {

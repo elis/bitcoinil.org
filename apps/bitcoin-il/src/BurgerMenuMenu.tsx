@@ -1,5 +1,6 @@
 import { Menu } from 'antd'
 import * as React from 'react'
+import { useLocation } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 import styled from 'styled-components'
 
@@ -14,11 +15,17 @@ const BurgerMenuMenu: React.FC<BurgerMenuMenuProps> = ({}) => {
   const [, setMenuOpen] = useRecoilState(isBurgerMenuOpen)
   const [openKeys, setOpenKeys] = React.useState([])
   const [open, setOpen] = React.useState('')
+  const location = useLocation()
 
   // Tried to fix this, can't do it
   const onOpenChange = (keys: any) => {
     setOpenKeys(keys)
   }
+
+  React.useEffect(() => {
+    const splitLocation = location.pathname.split('/')
+    setOpen(splitLocation[splitLocation.length - 1])
+  }, [])
 
   return (
     <StyledBurgerMenuMenu>

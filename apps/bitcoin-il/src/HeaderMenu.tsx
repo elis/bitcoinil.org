@@ -1,18 +1,27 @@
 import { Menu } from 'antd'
 import * as React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
 import styled from 'styled-components'
 import CustomNavLink from './CustomNavLink'
 import Arrow from './img/ico_angle.svg'
 import { MainMenuItem } from './Interfaces'
 import { mainMenuItems } from './mainMenuItems'
+import { currentlySelectedLanguage } from './state/state'
 
 export default function HeaderMenu(): JSX.Element {
-  const [current, setCurrent] = React.useState('innovation')
+  const [current, setCurrent] = React.useState('')
+  const location = useLocation()
+  const selectedLang = useRecoilValue(currentlySelectedLanguage)
 
   const onClick = (e: any) => {
     setCurrent(e.key)
   }
+
+  React.useEffect(() => {
+    const splitLocation = location.pathname.split('/')
+    setCurrent(splitLocation[splitLocation.length - 1])
+  }, [])
 
   return (
     <StyledAppMenu id="HeaderMenu">
