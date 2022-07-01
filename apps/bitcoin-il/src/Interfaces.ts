@@ -181,7 +181,6 @@ export interface TimelineCompProps {
 export interface GettingStartedBodyProps {}
 
 export interface TimelineItemProps {
-  key: string
   title: string
   body: string
   buttonText: string
