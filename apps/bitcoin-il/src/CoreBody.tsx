@@ -30,7 +30,7 @@ const CoreBody: React.FC<CoreBodyProps> = ({}) => {
             <ul>
               {coreShortcuts.map((shortcut, i) => {
                 return (
-                  <li>
+                  <li key={i}>
                     <a href={shortcut.link}>
                       <Card>
                         <img src={shortcut.image} />
@@ -50,7 +50,7 @@ const CoreBody: React.FC<CoreBodyProps> = ({}) => {
           <ul>
             {newsCards.map((shortcut, i) => {
               return (
-                <li>
+                <li key={i}>
                   <a href={shortcut.link}>
                     <Card>
                       <img src={shortcut.image} />
@@ -76,9 +76,8 @@ const CoreBody: React.FC<CoreBodyProps> = ({}) => {
         </h1>
         <div className="core-right-main-boxes">
           {mainBoxes.map((box, i) => {
-            console.log(box)
             return (
-              <Card>
+              <Card key={i}>
                 <img src={box.img} />
                 <h1>{box.title}</h1>
                 <h1>{box.mainText}</h1>
@@ -95,7 +94,6 @@ const CoreBody: React.FC<CoreBodyProps> = ({}) => {
         </h1>
         <ul className="core-right-links">
           {links.map((link, i) => {
-            console.log(link)
             return (
               <li key={i}>
                 <a href={link.link}>{link.linkText}</a>
