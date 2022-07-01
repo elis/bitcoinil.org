@@ -131,7 +131,7 @@ const ExchangesBody: React.FC<ExchangesBodyProps> = ({}) => {
                     <ul>
                       {' '}
                       {exchange?.exchanges?.map((ex, ii) => {
-                        return <span>{ex.name}</span>
+                        return <span key={ii}>{ex.name}</span>
                       })}
                     </ul>
                   </li>
@@ -204,14 +204,14 @@ const ExchangesBody: React.FC<ExchangesBodyProps> = ({}) => {
                     {exchange.exchanges
                       ? exchange.exchanges.map((ex, i) => {
                           return (
-                            <li
+                            <p
                               className="li-no-border-bottom"
                               key={`exhcnage-no-city-${i}`}
                             >
                               <a href={ex.link}>
-                                <h4>{ex.name}</h4>
+                                <span>{ex.name}</span>
                               </a>
-                            </li>
+                            </p>
                           )
                         })
                       : null}
