@@ -54,7 +54,6 @@ const WhitePaperBody: React.FC<WhitePaperBodyProps> = ({}) => {
       </h1>
       <div className="papers">
         {whitePaperTranslations.map((translation, i) => {
-          console.log(translation)
           return (
             <a key={i} href={translation.link}>
               <Card>
@@ -65,8 +64,18 @@ const WhitePaperBody: React.FC<WhitePaperBodyProps> = ({}) => {
                 {translation.translatedBy ? (
                   <p>
                     Translated: by{' '}
-                    {translation.translatedBy.map((tranny, i) => {
-                      return <a href={tranny.link}>{tranny.author}</a>
+                    {translation.translatedBy.map((translationSub, i) => {
+                      return (
+                        <span
+                          className="js-link"
+                          key={`tran-${i}`}
+                          onClick={() =>
+                            window.location.replace(translationSub.link)
+                          }
+                        >
+                          {translationSub.author}
+                        </span>
+                      )
                     })}
                   </p>
                 ) : (
@@ -131,5 +140,9 @@ const StyledWhitePaperBody = styled.div`
         margin-right: 20px;
       }
     }
+  }
+
+  .js-link {
+    color: blue;
   }
 `
