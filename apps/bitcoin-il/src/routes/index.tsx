@@ -2,8 +2,8 @@ import * as React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import HomePage from '../HomePage'
 import { useTranslations } from '../hooks/useTranslations'
-import { mainMenuItems } from '../mainMenuItems'
-import { nonMenuRoutes } from '../nonMenuRoutes'
+import { mainMenuItems } from './mainMenuItems'
+import { nonMenuRoutes } from './nonMenuRoutes'
 import NotARoute from '../NotARoute'
 
 const RoutesProvider = () => {

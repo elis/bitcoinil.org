@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import CustomNavLink from './CustomNavLink'
 import Arrow from './img/ico_angle.svg'
 import { MainMenuItem } from './Interfaces'
-import { mainMenuItems } from './mainMenuItems'
+import { mainMenuItems } from './routes/mainMenuItems'
 import { currentlySelectedLanguage } from './state/state'
 
 export default function HeaderMenu(): JSX.Element {

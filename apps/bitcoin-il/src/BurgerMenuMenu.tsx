@@ -7,7 +7,7 @@ import styled from 'styled-components'
 import CustomNavLink from './CustomNavLink'
 import { BurgerMenuMenuProps, MainMenuItem } from './Interfaces'
 import LanguageSelectMobile from './LanguageSelectMobile'
-import { mainMenuItems } from './mainMenuItems'
+import { mainMenuItems } from './routes/mainMenuItems'
 import { isBurgerMenuOpen } from './state/state'
 import ThemeSelectMobile from './ThemeSelectMobile'
 

@@ -7,7 +7,7 @@ import { phoneDevices } from './breakpoints'
 import CustomNavLink from './CustomNavLink'
 import logo from './img/logo.svg'
 import { FooterProps } from './Interfaces'
-import { mainMenuItems } from './mainMenuItems'
+import { mainMenuItems } from './routes/mainMenuItems'
 
 const Footer: React.FC<FooterProps> = ({}) => {
   const renderSupport = () => {

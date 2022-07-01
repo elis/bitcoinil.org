@@ -1,6 +1,6 @@
 import * as React from 'react'
-import ChooseWallet from './ChooseWallet'
-import RoutePage from './RoutePage'
+import ChooseWallet from '../ChooseWallet'
+import RoutePage from '../RoutePage'
 
 export const nonMenuRoutes = [
   {
