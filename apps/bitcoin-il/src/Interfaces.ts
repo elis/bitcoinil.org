@@ -98,9 +98,7 @@ export interface AlternatingTwoColumnRowProps {
   bodyText: JSX.Element
 }
 
-export interface HeaderProps {
-  setLanguage: Function
-}
+export interface HeaderProps {}
 
 export interface LanguageSelectProps {
   setLanguage: Function
