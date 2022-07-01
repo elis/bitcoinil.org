@@ -1,19 +1,13 @@
 import * as React from 'react'
 import { useRecoilState } from 'recoil'
 import styled from 'styled-components'
-import ico_angle from './img/ico_angle_white.svg'
 
+import ico_angle from './img/ico_angle_white.svg'
+import { ThemeSelectMobileProps } from './Interfaces'
 import { isBurgerMenuOpen } from './state/state'
 import ThemeSwitch from './ThemeSwitch'
 
-export interface ThemeSelectMobileProps {
-  setLanguage: Function
-}
-
-const ThemeSelectMobile: React.FC<ThemeSelectMobileProps> = ({
-  setLanguage
-}) => {
-  const [, setHideBurgerMenu] = useRecoilState(isBurgerMenuOpen)
+const ThemeSelectMobile: React.FC<ThemeSelectMobileProps> = ({}) => {
   const [isOpen, setIsOpen] = React.useState(false)
 
   return (

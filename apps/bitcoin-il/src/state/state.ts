@@ -1,8 +1,5 @@
 import { atom } from 'recoil'
-
-export interface LanguageAtomValue {
-  language: string
-}
+import { LanguageAtomValue } from '../Interfaces'
 
 export const currentlySelectedLanguage = atom<LanguageAtomValue>({
   key: 'currentlySelectedLanguage',

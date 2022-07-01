@@ -3,21 +3,18 @@ import * as React from 'react'
 import { useLocation } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 import styled from 'styled-components'
+
 import { useIntl } from './hooks/useIntl'
+import { LanguageSelectMobileProps } from './Interfaces'
 import { currentlySelectedLanguage, isBurgerMenuOpen } from './state/state'
 
-export interface LanguageSelectMobileProps {
-  setLanguage: Function
-}
-
-const LanguageSelectMobile: React.FC<LanguageSelectMobileProps> = ({
-  setLanguage
-}) => {
+const LanguageSelectMobile: React.FC<LanguageSelectMobileProps> = ({}) => {
   const [, setHideBurgerMenu] = useRecoilState(isBurgerMenuOpen)
   const [menuOpen, setMenuOpen] = React.useState(false)
   const { availableLanguages, customNavigate } = useIntl()
   const [current, setCurrent] = React.useState('English')
   const [openKeys, setOpenKeys] = React.useState([])
+  const [, setLanguage] = useRecoilState(currentlySelectedLanguage)
 
   const onOpenChange = (keys: any) => {
     setOpenKeys(keys)
@@ -27,7 +24,7 @@ const LanguageSelectMobile: React.FC<LanguageSelectMobileProps> = ({
   const location = useLocation()
 
   const onClick = (e: any) => {
-    setLanguage(e.key)
+    setLanguage({ language: e.key })
     setCurrent(e.key)
     setAtomLang({ language: e.key })
     customNavigate(location.pathname, e.key)

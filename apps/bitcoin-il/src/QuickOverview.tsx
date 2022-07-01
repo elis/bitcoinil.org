@@ -1,24 +1,13 @@
 import * as React from 'react'
 import { FormattedMessage } from 'react-intl'
 import styled from 'styled-components'
-import QuickOverviewBox from './QuickOverviewBox'
 import IndividualImage from './img/ico_individuals.svg'
 import BusinessImage from './img/ico_business.svg'
 import DevelopersImage from './img/ico_developers.svg'
 import OverviewBG from './img/overview-bg.svg'
 import { phoneDevices } from './breakpoints'
-
-export interface QuickOverviewBox {
-  index: Number
-  imgSrc: string
-  id: string
-  titleDefaultMessage: JSX.Element
-  titleDescription: string
-  subtitleDefaultMessage: JSX.Element
-  subtitleDescription: string
-  baseFormattedMessage?: String
-  link: string
-}
+import { QuickOverviewBoxProps } from './Interfaces'
+import QuickOverviewBox from './QuickOverviewBox'
 
 // @ts-ignore
 const boxes: any = [
@@ -106,7 +95,7 @@ export default function QuickOverview(): JSX.Element {
         />
       </h1>
       <div className="boxes">
-        {boxes.map((boxInfo: QuickOverviewBox, i: number) => {
+        {boxes.map((boxInfo: QuickOverviewBoxProps, i: number) => {
           const {
             imgSrc,
             index,

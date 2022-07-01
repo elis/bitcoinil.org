@@ -10,7 +10,7 @@ import { mainMenuItems } from './mainMenuItems'
 import { isBurgerMenuOpen } from './state/state'
 import ThemeSelectMobile from './ThemeSelectMobile'
 
-const BurgerMenuMenu: React.FC<BurgerMenuMenuProps> = ({ setLanguage }) => {
+const BurgerMenuMenu: React.FC<BurgerMenuMenuProps> = ({}) => {
   const [, setMenuOpen] = useRecoilState(isBurgerMenuOpen)
   const [openKeys, setOpenKeys] = React.useState([])
   const [open, setOpen] = React.useState('')
@@ -76,8 +76,8 @@ const BurgerMenuMenu: React.FC<BurgerMenuMenuProps> = ({ setLanguage }) => {
           )
         })}
       </Menu>
-      <LanguageSelectMobile setLanguage={setLanguage} />
-      <ThemeSelectMobile setLanguage={setLanguage} />
+      <LanguageSelectMobile />
+      <ThemeSelectMobile />
     </StyledBurgerMenuMenu>
   )
 }

@@ -4,6 +4,7 @@ import type { CompiledTheme, CompiledVariant } from '@djitsu/themes'
 import { Helmet } from 'react-helmet'
 import styled, { createGlobalStyle } from 'styled-components'
 import { Button } from 'antd'
+import { ThemeContextValue } from '../Interfaces'
 
 const { createContext, useContext, useMemo, useState } = React
 
@@ -12,22 +13,6 @@ const showDebugButton = false
 
 const BASE_URL = import.meta.env.BASE_URL || '/'
 
-export type ThemeContextValue = [ThemeContextState, ThemeContextActions]
-export interface ThemeContextState {
-  themes: CompiledTheme[]
-  active: {
-    theme: string
-    variant?: string
-    isDark: boolean
-  }
-  debug: {
-    hrefLight?: string
-    hrefDark?: string
-  }
-}
-export interface ThemeContextActions {
-  setTheme: (theme: string, variant?: string) => void
-}
 const defaultThemeContext: ThemeContextValue = [
   { themes: [], active: { theme: '', variant: '', isDark: false }, debug: {} },
   { setTheme: () => {} }

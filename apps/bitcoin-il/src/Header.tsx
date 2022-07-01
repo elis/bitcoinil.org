@@ -10,7 +10,7 @@ import { HeaderProps } from './Interfaces'
 import LanguageSelect from './LanguageSelect'
 import ThemeSwitch from './ThemeSwitch'
 
-const Header: React.FC<HeaderProps> = ({ setLanguage }) => {
+const Header: React.FC<HeaderProps> = ({}) => {
   return (
     <StyledHeader id="Header">
       <div className="header-left">
@@ -26,9 +26,9 @@ const Header: React.FC<HeaderProps> = ({ setLanguage }) => {
       <div className="header-right">
         <div className="header-right-hide-on-mobile">
           <ThemeSwitch />
-          <LanguageSelect setLanguage={setLanguage} />
+          <LanguageSelect />
         </div>
-        <BurgerMenu setLanguage={setLanguage} />
+        <BurgerMenu />
       </div>
     </StyledHeader>
   )

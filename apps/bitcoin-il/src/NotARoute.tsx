@@ -3,8 +3,7 @@ import { FormattedMessage } from 'react-intl'
 import styled from 'styled-components'
 import SiteButton from './BitcoinSiteButton'
 import CustomNavLink from './CustomNavLink'
-
-export interface NotARouteProps {}
+import { NotARouteProps } from './Interfaces'
 
 const NotARoute: React.FC<NotARouteProps> = ({}) => {
   return (

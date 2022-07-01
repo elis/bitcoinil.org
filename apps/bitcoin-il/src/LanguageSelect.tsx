@@ -1,21 +1,21 @@
 import { Menu } from 'antd'
 import * as React from 'react'
-// import { FormattedMessage, IntlProvider } from "react-intl"
+import { useLocation } from 'react-router-dom'
+import { useRecoilState } from 'recoil'
 import styled from 'styled-components'
+
 import { phoneDevices } from './breakpoints'
 import { useIntl } from './hooks/useIntl'
-import { LanguageSelectProps, LongNamesForLanguageType } from './Interfaces'
 import ico_angle from './img/ico_angle.svg'
-import { useRecoilState } from 'recoil'
+import { LanguageSelectProps, LongNamesForLanguageType } from './Interfaces'
 import { currentlySelectedLanguage } from './state/state'
-import { useLocation } from 'react-router-dom'
 
 const longNamesForLanguages: LongNamesForLanguageType = {
   he: 'עִברִית',
   en: 'English'
 }
 
-const LanguageSelect: React.FC<LanguageSelectProps> = ({ setLanguage }) => {
+const LanguageSelect: React.FC<LanguageSelectProps> = ({}) => {
   const intl = useIntl()
   const { availableLanguages, customNavigate } = intl
   const [current, setCurrent] = React.useState('en')
@@ -32,8 +32,6 @@ const LanguageSelect: React.FC<LanguageSelectProps> = ({ setLanguage }) => {
   }, [])
 
   const onClick = (e: any) => {
-    // console.log(location.pathname)
-    setLanguage(e.key)
     setCurrent(e.key)
     setAtomLang({ language: e.key })
     customNavigate(location.pathname, e.key)

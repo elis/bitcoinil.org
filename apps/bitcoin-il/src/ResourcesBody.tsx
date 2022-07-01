@@ -2,7 +2,7 @@ import * as React from 'react'
 import { FormattedMessage } from 'react-intl'
 import styled from 'styled-components'
 import CardsDisplay from './CardsDisplay'
-import { BodyCard } from './Interfaces'
+import { BodyCard, ResourcesBodyProps } from './Interfaces'
 import { NavLink } from 'react-router-dom'
 
 import ico_solve from './img/ico_solve.svg'
@@ -11,8 +11,6 @@ import ico_market from './img/ico_market.svg'
 import ico_doc from './img/ico_doc.svg'
 import ico_voucher from './img/ico_voucher.svg'
 import { phoneDevices } from './breakpoints'
-
-interface ResourcesBodyProps {}
 
 const resourceCards: BodyCard[] = [
   {

@@ -1,23 +1,11 @@
+import { Card } from 'antd'
 import * as React from 'react'
 import { FormattedMessage } from 'react-intl'
 import styled from 'styled-components'
-import { Card } from 'antd'
+
 import { phoneDevices } from './breakpoints'
-
 import ico_download from './img/ico_download.svg'
-
-const s = (whatever: any) => {
-  console.log(s)
-}
-
-interface WhitePaperTranslation {
-  link: string
-  language: JSX.Element
-  translatedBy?: {
-    author: JSX.Element
-    link: string
-  }[]
-}
+import { WhitePaperBodyProps, WhitePaperTranslation } from './Interfaces'
 
 const whitePaperTranslations: WhitePaperTranslation[] = [
   {
@@ -53,8 +41,6 @@ const whitePaperTranslations: WhitePaperTranslation[] = [
     ]
   }
 ]
-
-export interface WhitePaperBodyProps {}
 
 const WhitePaperBody: React.FC<WhitePaperBodyProps> = ({}) => {
   return (

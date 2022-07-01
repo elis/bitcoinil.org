@@ -2,9 +2,8 @@ import { ControlOutlined } from '@ant-design/icons'
 import { Button, Popover, Switch } from 'antd'
 import * as React from 'react'
 import styled from 'styled-components'
+import { ThemeSwitchProps } from './Interfaces'
 import { useTheme } from './themes'
-
-export interface ThemeSwitchProps {}
 
 const ThemeSwitch: React.FC<ThemeSwitchProps> = ({}) => {
   const [isSystem, setIsSystem] = React.useState(true)
@@ -47,7 +46,7 @@ const ThemeSwitch: React.FC<ThemeSwitchProps> = ({}) => {
             toggleDarkMode()
           }}
         >
-          {isDark ? "☀️" : "🌙"}
+          {isDark ? '☀️' : '🌙'}
         </Button>
       ) : (
         <StyledThemeSwitch
