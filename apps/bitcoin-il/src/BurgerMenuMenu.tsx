@@ -15,6 +15,7 @@ const BurgerMenuMenu: React.FC<BurgerMenuMenuProps> = ({}) => {
   const [openKeys, setOpenKeys] = React.useState([])
   const [open, setOpen] = React.useState('')
 
+  // Tried to fix this, can't do it
   const onOpenChange = (keys: any) => {
     setOpenKeys(keys)
   }
