@@ -26,8 +26,8 @@ export interface AvailableLanguageData {
 
 export interface SiteButtonProps {
   onClick?: Function
-  type?: any
-  className?: any
+  type?: any // Any because it's for the AntD component and I can't figure out the type
+  className?: string
   children: React.ReactNode
   color?: string
   background?: string
