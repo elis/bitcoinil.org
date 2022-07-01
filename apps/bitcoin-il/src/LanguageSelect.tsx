@@ -5,7 +5,7 @@ import { useRecoilState } from 'recoil'
 import styled from 'styled-components'
 
 import { phoneDevices } from './breakpoints'
-import { useIntl } from './hooks/useIntl'
+import { useTranslations } from './hooks/useTranslations'
 import ico_angle from './img/ico_angle.svg'
 import { LanguageSelectProps, LongNamesForLanguageType } from './Interfaces'
 import { currentlySelectedLanguage } from './state/state'
@@ -16,7 +16,7 @@ const longNamesForLanguages: LongNamesForLanguageType = {
 }
 
 const LanguageSelect: React.FC<LanguageSelectProps> = ({}) => {
-  const intl = useIntl()
+  const intl = useTranslations()
   const { availableLanguages, navigateWithLanguageChange } = intl
   const [current, setCurrent] = React.useState('en')
   const [, setAtomLang] = useRecoilState(currentlySelectedLanguage)

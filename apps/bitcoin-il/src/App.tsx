@@ -9,7 +9,7 @@ import { phoneDevices } from './breakpoints'
 import Footer from './Footer'
 import Header from './Header'
 import HomePage from './HomePage'
-import { useIntl } from './hooks/useIntl'
+import { useTranslations } from './hooks/useTranslations'
 import { mainMenuItems } from './mainMenuItems'
 import { nonMenuRoutes } from './nonMenuRoutes'
 import NotARoute from './NotARoute'
@@ -51,7 +51,7 @@ function App(): JSX.Element {
       console.log('Suppressed Error')
     }
 
-  const intl = useIntl()
+  const intl = useTranslations()
   const { availableLanguages } = intl
 
   const renderRoutes = () => (

@@ -3,15 +3,15 @@ import * as React from 'react'
 import { useLocation } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 import styled from 'styled-components'
+import { useTranslations } from './hooks/useTranslations'
 
-import { useIntl } from './hooks/useIntl'
 import { LanguageSelectMobileProps } from './Interfaces'
 import { currentlySelectedLanguage, isBurgerMenuOpen } from './state/state'
 
 const LanguageSelectMobile: React.FC<LanguageSelectMobileProps> = ({}) => {
   const [, setHideBurgerMenu] = useRecoilState(isBurgerMenuOpen)
   const [, setMenuOpen] = React.useState(false)
-  const { availableLanguages, navigateWithLanguageChange } = useIntl()
+  const { availableLanguages, navigateWithLanguageChange } = useTranslations()
   const [current, setCurrent] = React.useState('English')
   const [openKeys, setOpenKeys] = React.useState([])
   const [, setLanguage] = useRecoilState(currentlySelectedLanguage)

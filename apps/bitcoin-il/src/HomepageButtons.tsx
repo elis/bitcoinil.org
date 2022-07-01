@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import SiteButton from './BitcoinSiteButton'
 import { useNavigate } from 'react-router-dom'
 import { phoneDevices } from './breakpoints'
-import { useIntl } from './hooks/useIntl'
 
 export default function HomepageButtons(): JSX.Element {
   const navigate = useNavigate()

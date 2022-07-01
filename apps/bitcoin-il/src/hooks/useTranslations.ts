@@ -1,14 +1,11 @@
-import { AvailableLanguage } from './../Interfaces'
 import * as React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilState } from 'recoil'
 
-import { Messages } from '../Interfaces'
+import { AvailableLanguage, Messages } from '../Interfaces'
 import { currentlySelectedLanguage } from '../state/state'
-import { messages_en } from '../translations/en'
-import { messages_he } from '../translations/he'
 
-export const useIntl = () => {
+export const useTranslations = () => {
   const [language] = useRecoilState(currentlySelectedLanguage)
   const [locale, setLocale] = React.useState('en')
   const navigate = useNavigate()
@@ -21,11 +18,6 @@ export const useIntl = () => {
     }
   }
 
-  const messages: Messages = {
-    he: messages_he,
-    en: messages_en
-  }
-
   React.useEffect(() => {
     if (language.language === 'he') setLocale('il')
     setLocale(language.language)
@@ -36,7 +28,6 @@ export const useIntl = () => {
     { name: 'he', icon: '🇮🇱', locale: 'il', longName: 'עִברִית' }
   ]
   return {
-    messages,
     availableLanguages,
     locale,
     navigateWithLanguageChange
