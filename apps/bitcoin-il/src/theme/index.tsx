@@ -6,6 +6,7 @@ import { Button } from 'antd'
 import type { CompiledTheme, CompiledVariant } from '@djitsu/themes'
 import { themes } from '@djitsu/themes'
 import { ThemeContextValue } from '../Interfaces'
+import FaviconHandler from './favicon'
 
 const { createContext, useContext, useMemo, useState } = React
 
@@ -147,6 +148,9 @@ const Theme = ({ children }: Props) => {
             <link rel="stylesheet" href={fontHref} />
           ))}
       </Helmet>
+      
+      <FaviconHandler />
+
       {showDebug ? (
         <>
           <GlobalStyle />

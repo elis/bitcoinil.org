@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { FormattedMessage } from 'react-intl'
 import ChooseWallet from '../ChooseWallet'
 import RoutePage from '../RoutePage'
 
@@ -9,8 +10,8 @@ export const nonMenuRoutes = [
     element: (
       <RoutePage
         id="choose-your-wallet"
-        title="Choose Your Wallet"
-        subtitle="Which Wallet Is For You?"
+        title={<FormattedMessage id="page.choose-wallet.title" defaultMessage="Choose Your Wallet" />}
+        subtitle={<FormattedMessage id="page.choose-wallet.subtitle" defaultMessage="Which Wallet Is For You?" />}
         body={<ChooseWallet />}
       />
     )
@@ -21,8 +22,8 @@ export const nonMenuRoutes = [
     element: (
       <RoutePage
         id="buy"
-        title="Buy BitCoin"
-        subtitle="Buy BitCoin"
+        title={<FormattedMessage id="page.buy-bitil.title" defaultMessage="Buy BitcoinIL" />}
+        subtitle={<FormattedMessage id="page.buy-bitil.subtitle" defaultMessage="Buy BitcoinIL" />}
         body={<h1>Buy Body</h1>}
       />
     )
