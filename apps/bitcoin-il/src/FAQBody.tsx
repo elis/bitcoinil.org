@@ -77,12 +77,12 @@ const FAQBody: React.FC<FAQBodyProps> = ({}) => {
         <ul>
           {FAQ.map((faq, i) => {
             return (
-              <li>
+              <li key={i}>
                 {faq.categoryHeading}
                 {faq.hasSubHeadings ? (
                   <ul>
                     {faq.subHeadings?.map((subHead, i) => {
-                      return <li>{subHead.subHeadingTitle}</li>
+                      return <li key={i}>{subHead.subHeadingTitle}</li>
                     })}
                   </ul>
                 ) : null}
@@ -94,23 +94,23 @@ const FAQBody: React.FC<FAQBodyProps> = ({}) => {
       <div className="faq-right">
         {FAQ.map((faq, i) => {
           return (
-            <>
+            <React.Fragment key={i}>
               <h1 className="faq-category-heading faq-accented-header">
                 {faq.categoryHeading}
               </h1>
               {faq.hasSubHeadings
                 ? faq.subHeadings?.map((subH, i) => {
                     return (
-                      <>
+                      <React.Fragment key={i}>
                         <h1 className="faq-subheading-title">
                           {subH.subHeadingTitle}
                         </h1>
                         <p>{subH.subHeadingBody}</p>
-                      </>
+                      </React.Fragment>
                     )
                   })
                 : null}
-            </>
+            </React.Fragment>
           )
         })}
         <Divider />
