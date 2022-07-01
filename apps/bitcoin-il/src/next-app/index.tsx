@@ -1,54 +1,56 @@
-import locales from '@bitil/locales'
 import { ConfigProvider } from 'antd'
 import * as React from 'react'
 import { Helmet } from 'react-helmet'
-import { IntlProvider } from 'react-intl'
-import { Route, Routes, useLocation } from 'react-router-dom'
-import { useRecoilState } from 'recoil'
+import { FormattedMessage, IntlProvider } from 'react-intl'
+import { HashRouter as Router, Route, Routes } from 'react-router-dom'
+import { RecoilRoot, useRecoilState } from 'recoil'
 import styled from 'styled-components'
+import { phoneDevices } from '../breakpoints'
+import Footer from '../Footer'
+import { currentlySelectedLanguage } from '../state/state'
+import Theme from '../theme'
+import locales from '@bitil/locales'
+import Support from '../support'
+import Header from '../Header'
+import { useTranslations } from '../hooks/useTranslations'
+import { mainMenuItems } from '../mainMenuItems'
+import { nonMenuRoutes } from '../nonMenuRoutes'
+import NotARoute from '../NotARoute'
+import HomePage from '../HomePage'
 
-import { phoneDevices } from './breakpoints'
-import Footer from './Footer'
-import Header from './Header'
-import HomePage from './HomePage'
-import { useTranslations } from './hooks/useTranslations'
-import { mainMenuItems } from './mainMenuItems'
-import { nonMenuRoutes } from './nonMenuRoutes'
-import NotARoute from './NotARoute'
-import { currentlySelectedLanguage } from './state/state'
-import Support from './support'
-import Theme from './theme'
+const BaseWrappers = ({ children }) => {
+  return (
+    <Router>
+      <RecoilRoot>
+        <React.StrictMode>
+          <Theme>{children}</Theme>
+        </React.StrictMode>
+      </RecoilRoot>
+    </Router>
+  )
+}
 
-// const suppressErrors = true
-const suppressErrors = false
-
-function App(): JSX.Element {
+const LocaleProvider = ({ children }) => {
   const [ln, setLn] = useRecoilState(currentlySelectedLanguage)
-  const [atomLang, setAtomLang] = useRecoilState(currentlySelectedLanguage)
-  const location = useLocation()
-
-  React.useEffect(() => {
-    if (
-      atomLang.language !== 'en' &&
-      !location.pathname.startsWith(`/${atomLang.language}/`)
-    ) {
-    }
-  }, [location, atomLang])
-
-  React.useEffect(() => {
-    availableLanguages.forEach((avLang) => {
-      if (location.pathname.startsWith(`/${avLang.name}`)) {
-        setLn({ language: location.pathname.substring(1, 3) })
-        setAtomLang({ language: location.pathname.substring(1, 3) })
-      }
-    })
-  }, [])
-
-  if (suppressErrors)
-    console.error = () => {
-      console.log('Suppressed Error')
-    }
-
+  return (
+    <ConfigProvider direction={ln.language === 'he' ? 'rtl' : 'ltr'}>
+      <IntlProvider
+        // @ts-ignore
+        messages={locales[ln.language]}
+        locale={ln.language}
+        defaultLocale="en"
+        onError={(err) => {
+          // console.log('Error from translation:', err)
+          // Here be collecting missing translations!
+          // Maybe shove them back to notion or something?
+        }}
+      >
+        {children}
+      </IntlProvider>
+    </ConfigProvider>
+  )
+}
+const Content = () => {
   const intl = useTranslations()
   const { availableLanguages } = intl
 
@@ -112,8 +114,17 @@ function App(): JSX.Element {
   )
 
   return (
-    <Theme>
-      <ConfigProvider direction={ln.language === 'he' ? 'rtl' : 'ltr'}>
+    <>
+      <Support />
+      <Header />
+      {renderRoutes()}
+    </>
+  )
+}
+const App = () => {
+  return (
+    <BaseWrappers>
+      <LocaleProvider>
         <AppStyleWrap id="App">
           <Helmet>
             <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -123,28 +134,13 @@ function App(): JSX.Element {
               rel="stylesheet"
             />
           </Helmet>
-          <IntlProvider
-            // @ts-ignore
-            messages={locales[ln.language]}
-            locale={ln.language}
-            defaultLocale="en"
-            onError={(err) => {
-              // console.log('Error from translation:', err)
-              // Here be collecting missing translations!
-              // Maybe shove them back to notion or something?
-            }}
-          >
-            <div className="App">
-              {/* <DevTools /> */}
-              <Support />
-              <Header />
-              {renderRoutes()}
-            </div>
-            <Footer />
-          </IntlProvider>
+          <div className="App">
+            <Content />
+          </div>
+          <Footer />
         </AppStyleWrap>
-      </ConfigProvider>
-    </Theme>
+      </LocaleProvider>
+    </BaseWrappers>
   )
 }
 

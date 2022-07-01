@@ -1,16 +1,5 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import App from './App'
-import { HashRouter as Router } from 'react-router-dom'
-import { RecoilRoot } from 'recoil'
+import NextApp from './next-app'
 
-ReactDOM.render(
-  <Router>
-    <RecoilRoot>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-    </RecoilRoot>
-  </Router>,
-  document.getElementById('root')
-)
+ReactDOM.render(<NextApp />, document.getElementById('root'))

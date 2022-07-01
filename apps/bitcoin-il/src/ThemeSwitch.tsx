@@ -3,7 +3,7 @@ import { Button, Popover, Switch } from 'antd'
 import * as React from 'react'
 import styled from 'styled-components'
 import { ThemeSwitchProps } from './Interfaces'
-import { useTheme } from './themes'
+import { useTheme } from './theme'
 
 const ThemeSwitch: React.FC<ThemeSwitchProps> = ({}) => {
   const [isSystem, setIsSystem] = React.useState(true)
