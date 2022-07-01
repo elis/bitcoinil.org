@@ -1,21 +1,14 @@
 import * as React from 'react'
 import { FormattedMessage } from 'react-intl'
 import styled from 'styled-components'
+
 import AlternatingTwoColumnRow from './AlternatingTwoColumnRow'
-import { HowItWorksProps } from './Interfaces'
-
-import NewUser from './img/new-user.svg'
 import BlockChain from './img/blockchain.svg'
-import PrivateKeys from './img/private-keys.svg'
 import Mining from './img/mining.svg'
+import NewUser from './img/new-user.svg'
 import Paper from './img/paper.svg'
-
-interface HowItWorksItem {
-  index: number
-  imgSrc: string
-  titleText: JSX.Element
-  bodyText: JSX.Element
-}
+import PrivateKeys from './img/private-keys.svg'
+import { HowItWorksItem, HowItWorksProps } from './Interfaces'
 
 const howItWorksItems: HowItWorksItem[] = [
   {

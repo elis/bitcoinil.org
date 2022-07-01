@@ -1,14 +1,13 @@
 import * as React from 'react'
 import { FormattedMessage } from 'react-intl'
-import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
+
 import SiteButton from './BitcoinSiteButton'
 import { phoneDevices } from './breakpoints'
-import { mainMenuItems } from './mainMenuItems'
-import logo from './img/logo.svg'
 import CustomNavLink from './CustomNavLink'
-
-interface FooterProps {}
+import logo from './img/logo.svg'
+import { FooterProps } from './Interfaces'
+import { mainMenuItems } from './mainMenuItems'
 
 const Footer: React.FC<FooterProps> = ({}) => {
   const renderSupport = () => {

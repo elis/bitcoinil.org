@@ -4,8 +4,7 @@ import styled from 'styled-components'
 import SiteButton from './BitcoinSiteButton'
 import { colors } from './colors'
 import { Divider } from 'antd'
-
-export interface EventsBodyProps {}
+import { EventsBodyProps } from './Interfaces'
 
 const EventsBody: React.FC<EventsBodyProps> = ({}) => {
   const [showMoreEvents, setShowMoreEvents] = React.useState(false)

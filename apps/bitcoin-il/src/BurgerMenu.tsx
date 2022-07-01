@@ -4,13 +4,10 @@ import styled from 'styled-components'
 
 import { phoneDevices } from './breakpoints'
 import BurgerMenuMenu from './BurgerMenuMenu'
-import { isBurgerMenuOpen } from './state/state'
+import { BurgerMenuProps } from './Interfaces'
+import { currentlySelectedLanguage, isBurgerMenuOpen } from './state/state'
 
-interface BurgerMenuProps {
-  setLanguage: Function
-}
-
-const BurgerMenu: React.FC<BurgerMenuProps> = ({ setLanguage }) => {
+const BurgerMenu: React.FC<BurgerMenuProps> = ({}) => {
   const [burgerOpen, setBurgerOpen] = useRecoilState(isBurgerMenuOpen)
 
   const toggleBurger = () => {
@@ -33,7 +30,7 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({ setLanguage }) => {
         <span className="line line3"></span>
       </div>
       <div className={`slide-out ${burgerOpen ? 'open' : 'closed'}`}>
-        <BurgerMenuMenu setLanguage={setLanguage} />
+        <BurgerMenuMenu />
       </div>
       <div
         className={`on-click-outside ${burgerOpen ? 'open' : 'closed'}`}

@@ -1,17 +1,16 @@
 import * as React from 'react'
 import { FormattedMessage } from 'react-intl'
 import styled from 'styled-components'
+
+import SiteButton from './BitcoinSiteButton'
+import { phoneDevices } from './breakpoints'
 import { colors } from './colors'
+import CustomNavLink from './CustomNavLink'
+import bitcoinImg from './img/bitcoin-img.svg'
 import instant from './img/main_ico_instant.svg'
 import lowfee from './img/main_ico_lowfee.svg'
 import worldwide from './img/main_ico_worldwide.svg'
-import bitcoinImg from './img/bitcoin-img.svg'
-import SiteButton from './BitcoinSiteButton'
-import { NavLink } from 'react-router-dom'
-import { phoneDevices } from './breakpoints'
-import CustomNavLink from './CustomNavLink'
-
-interface GetStartedWithBitcoinProps {}
+import { GetStartedWithBitcoinProps } from './Interfaces'
 
 const GetStartedWithBitcoin: React.FC<GetStartedWithBitcoinProps> = ({}) => {
   return (

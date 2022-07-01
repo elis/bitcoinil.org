@@ -1,11 +1,10 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import CardsDisplay from './CardsDisplay'
 
 import { phoneDevices } from './breakpoints'
+import CardsDisplay from './CardsDisplay'
 import { communityCards } from './CommunityBodyData'
-
-interface CommunityBodyProps {}
+import { CommunityBodyProps } from './Interfaces'
 
 const CommunityBody: React.FC<CommunityBodyProps> = ({}) => {
   return (

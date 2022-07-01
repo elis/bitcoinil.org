@@ -1,4 +1,6 @@
 import * as React from 'react'
+import type { CompiledTheme, CompiledVariant } from '@djitsu/themes'
+
 export interface ClickedMenuItemData {
   key: string
   keyPath: [string]
@@ -44,9 +46,92 @@ export interface Messages {
   [key: string]: TranslationDictionary
 }
 
-export interface BurgerMenuMenuProps {
-  setLanguage: Function
+export type ThemeContextValue = [ThemeContextState, ThemeContextActions]
+export interface ThemeContextState {
+  themes: CompiledTheme[]
+  active: {
+    theme: string
+    variant?: string
+    isDark: boolean
+  }
+  debug: {
+    hrefLight?: string
+    hrefDark?: string
+  }
 }
+export interface ThemeContextActions {
+  setTheme: (theme: string, variant?: string) => void
+}
+
+export interface LanguageAtomValue {
+  language: string
+}
+
+export interface WhitePaperBodyProps {}
+
+export interface WhitePaperTranslation {
+  link: string
+  language: JSX.Element
+  translatedBy?: {
+    author: JSX.Element
+    link: string
+  }[]
+}
+
+export interface ThemeSwitchProps {}
+
+export interface ThemeSelectMobileProps {}
+
+export interface ResourcesBodyProps {}
+
+export interface QuickOverviewBoxProps {
+  index: Number
+  imgSrc: string
+  id: string
+  titleDefaultMessage: JSX.Element
+  titleDescription: string
+  subtitleDefaultMessage: JSX.Element
+  subtitleDescription: string
+  baseFormattedMessage?: String
+  link: string
+}
+
+export interface NotARouteProps {}
+
+export interface HowItWorksItem {
+  index: number
+  imgSrc: string
+  titleText: JSX.Element
+  bodyText: JSX.Element
+}
+
+export interface GetStartedWithBitcoinProps {}
+
+export interface FooterProps {}
+
+export interface FAQBodyProps {}
+
+export interface IndividualFAQ {
+  categoryHeading: JSX.Element
+  hasSubHeadings: boolean
+  bodyWithoutSubheadings?: { title: JSX.Element; body: JSX.Element }[]
+  subHeadings?: { subHeadingTitle: JSX.Element; subHeadingBody: JSX.Element }[]
+}
+
+export interface EventsBodyProps {}
+
+export interface CustomNavLinkProps {
+  to: string
+  children?: React.ReactNode
+}
+
+export interface BuyBodyProps {}
+
+export interface CommunityBodyProps {}
+
+export interface BurgerMenuMenuProps {}
+
+export interface LanguageSelectMobileProps {}
 
 export interface QuickOverviewBox {
   index: Number
@@ -59,6 +144,8 @@ export interface QuickOverviewBox {
   baseFormattedMessage?: String
   link: string
 }
+
+export interface BurgerMenuProps {}
 
 export interface IndividualsBodyProps {}
 
@@ -100,9 +187,7 @@ export interface AlternatingTwoColumnRowProps {
 
 export interface HeaderProps {}
 
-export interface LanguageSelectProps {
-  setLanguage: Function
-}
+export interface LanguageSelectProps {}
 
 export interface VocabularyProps {}
 

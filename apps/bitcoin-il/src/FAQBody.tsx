@@ -2,15 +2,10 @@ import { Divider } from 'antd'
 import * as React from 'react'
 import { FormattedMessage } from 'react-intl'
 import styled from 'styled-components'
+
 import { phoneDevices } from './breakpoints'
 import { colors } from './colors'
-
-export interface IndividualFAQ {
-  categoryHeading: JSX.Element
-  hasSubHeadings: boolean
-  bodyWithoutSubheadings?: { title: JSX.Element; body: JSX.Element }[]
-  subHeadings?: { subHeadingTitle: JSX.Element; subHeadingBody: JSX.Element }[]
-}
+import { FAQBodyProps, IndividualFAQ } from './Interfaces'
 
 const FAQ: IndividualFAQ[] = [
   {
@@ -74,8 +69,6 @@ const FAQ: IndividualFAQ[] = [
     ]
   }
 ]
-
-export interface FAQBodyProps {}
 
 const FAQBody: React.FC<FAQBodyProps> = ({}) => {
   return (
