@@ -59,6 +59,18 @@ export interface ThemeContextState {
     hrefDark?: string
   }
 }
+
+export interface BoxProps {
+  index: number
+  imgSrc: string
+  id: string
+  titleDefaultMessage: JSX.Element
+  titleDescription: string
+  subtitleDefaultMessage: JSX.Element
+  subtitleDescription: string
+  link: string
+}
+
 export interface ThemeContextActions {
   setTheme: (theme: string, variant?: string) => void
 }

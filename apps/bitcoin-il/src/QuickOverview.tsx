@@ -6,11 +6,10 @@ import BusinessImage from './img/ico_business.svg'
 import DevelopersImage from './img/ico_developers.svg'
 import OverviewBG from './img/overview-bg.svg'
 import { phoneDevices } from './breakpoints'
-import { QuickOverviewBoxProps } from './Interfaces'
+import { BoxProps, QuickOverviewBoxProps } from './Interfaces'
 import QuickOverviewBox from './QuickOverviewBox'
 
-// @ts-ignore
-const boxes: any = [
+const boxes: BoxProps[] = [
   {
     index: 0,
     imgSrc: IndividualImage,
