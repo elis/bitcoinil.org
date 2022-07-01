@@ -8,6 +8,7 @@ import { BurgerMenuMenuProps, MainMenuItem } from './Interfaces'
 import LanguageSelectMobile from './LanguageSelectMobile'
 import { mainMenuItems } from './mainMenuItems'
 import { isBurgerMenuOpen } from './state/state'
+import ThemeSelectMobile from './ThemeSelectMobile'
 
 const BurgerMenuMenu: React.FC<BurgerMenuMenuProps> = ({ setLanguage }) => {
   const [, setMenuOpen] = useRecoilState(isBurgerMenuOpen)
@@ -40,7 +41,7 @@ const BurgerMenuMenu: React.FC<BurgerMenuMenuProps> = ({ setLanguage }) => {
                 {item.submenu.map((subItem: MainMenuItem) => {
                   return (
                     <Menu.Item
-                      style={{ background: 'grey', margin: 0, padding: 0 }}
+                      style={{ background: 'grey' }}
                       className="grey-submenu-item"
                       key={subItem.key}
                     >
@@ -67,6 +68,7 @@ const BurgerMenuMenu: React.FC<BurgerMenuMenuProps> = ({ setLanguage }) => {
         })}
       </Menu>
       <LanguageSelectMobile setLanguage={setLanguage} />
+      <ThemeSelectMobile setLanguage={setLanguage} />
     </StyledBurgerMenuMenu>
   )
 }
