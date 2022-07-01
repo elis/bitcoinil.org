@@ -22,7 +22,7 @@ import { ConfigProvider } from 'antd'
 const suppressErrors = false
 
 function App(): JSX.Element {
-  const [ln, setLn] = React.useState('en')
+  const [ln, setLn] = useRecoilState(currentlySelectedLanguage)
   const nav = useNavigate()
   const { customNavigate } = useIntl()
 
@@ -41,7 +41,7 @@ function App(): JSX.Element {
   React.useEffect(() => {
     availableLanguages.forEach((avLang) => {
       if (location.pathname.startsWith(`/${avLang.name}`)) {
-        setLn(location.pathname.substring(1, 3))
+        setLn({ language: location.pathname.substring(1, 3) })
         setAtomLang({ language: location.pathname.substring(1, 3) })
       }
     })
@@ -116,7 +116,7 @@ function App(): JSX.Element {
 
   return (
     <Theme>
-      <ConfigProvider direction={ln === 'he' ? 'rtl' : 'ltr'}>
+      <ConfigProvider direction={ln.language === 'he' ? 'rtl' : 'ltr'}>
         <AppStyleWrap id="App">
           <Helmet>
             <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -128,8 +128,8 @@ function App(): JSX.Element {
           </Helmet>
           <IntlProvider
             // @ts-ignore
-            messages={locales[ln]}
-            locale={ln}
+            messages={locales[ln.language]}
+            locale={ln.language}
             defaultLocale="en"
             onError={(err) => {
               // console.log('Error from translation:', err)
@@ -140,7 +140,7 @@ function App(): JSX.Element {
             <div className="App">
               {/* <DevTools /> */}
               <Support />
-              <Header setLanguage={setLn} />
+              <Header />
               {renderRoutes()}
             </div>
             <Footer />
