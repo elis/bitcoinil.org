@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import HomePage from '../HomePage'
+import HomePage from '../components/HomePage'
 import { useTranslations } from '../hooks/useTranslations'
 import { mainMenuItems } from './mainMenuItems'
 import { nonMenuRoutes } from './nonMenuRoutes'
-import NotARoute from '../NotARoute'
+import NotARoute from '../layout/NotARoute'
 
 const RoutesProvider = () => {
   const intl = useTranslations()

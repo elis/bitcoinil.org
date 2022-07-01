@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { FormattedMessage } from 'react-intl'
-import ChooseWallet from '../ChooseWallet'
-import RoutePage from '../RoutePage'
+import ChooseWallet from '../components/ChooseWallet'
+import RoutePage from '../layout/RoutePage'
 
 export const nonMenuRoutes = [
   {

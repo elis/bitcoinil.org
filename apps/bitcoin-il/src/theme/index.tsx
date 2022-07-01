@@ -5,7 +5,7 @@ import { Button } from 'antd'
 
 import type { CompiledTheme, CompiledVariant } from '@djitsu/themes'
 import { themes } from '@djitsu/themes'
-import { ThemeContextValue } from '../Interfaces'
+import { ThemeContextValue } from '../utils/interfaces'
 import FaviconHandler from './favicon'
 
 const { createContext, useContext, useMemo, useState } = React
