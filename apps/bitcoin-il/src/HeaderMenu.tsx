@@ -42,7 +42,7 @@ export default function HeaderMenu(): JSX.Element {
             )
           }
           return (
-            <Menu.Item key={item.key} onClick={() => console.log(item)}>
+            <Menu.Item key={item.key}>
               <CustomNavLink to={`/${item.key}`}></CustomNavLink>
               {/* <NavLink to={`/${item.key}`}></NavLink> */}
               <p>{item.label}</p>
