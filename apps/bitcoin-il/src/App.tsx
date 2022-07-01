@@ -24,7 +24,6 @@ const suppressErrors = false
 function App(): JSX.Element {
   const [ln, setLn] = useRecoilState(currentlySelectedLanguage)
   const nav = useNavigate()
-  const { customNavigate } = useIntl()
 
   const [atomLang, setAtomLang] = useRecoilState(currentlySelectedLanguage)
 

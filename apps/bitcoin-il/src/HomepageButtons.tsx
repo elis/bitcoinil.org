@@ -8,7 +8,6 @@ import { useIntl } from './hooks/useIntl'
 
 export default function HomepageButtons(): JSX.Element {
   const navigate = useNavigate()
-  const { customNavigate } = useIntl()
   return (
     <StyledHomepageButtons>
       <div className="homepage-buttons">

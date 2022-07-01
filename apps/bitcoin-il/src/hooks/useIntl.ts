@@ -13,7 +13,7 @@ export const useIntl = () => {
   const [locale, setLocale] = React.useState('en')
   const navigate = useNavigate()
 
-  const customNavigate = (path: string, newLang?: string) => {
+  const navigateWithLanguageChange = (path: string, newLang?: string) => {
     if (newLang === 'en') {
       navigate(path.substring(3))
     } else {
@@ -27,9 +27,9 @@ export const useIntl = () => {
   }
 
   React.useEffect(() => {
-    if (language === 'he') setLocale('il')
-    setLocale(language)
-  }, [language])
+    if (language.language === 'he') setLocale('il')
+    setLocale(language.language)
+  }, [language.language])
 
   const availableLanguages: AvailableLanguage[] = [
     { name: 'en', icon: '🇬🇧', locale: 'en', longName: 'English' },
@@ -39,6 +39,6 @@ export const useIntl = () => {
     messages,
     availableLanguages,
     locale,
-    customNavigate
+    navigateWithLanguageChange
   }
 }

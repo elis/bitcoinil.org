@@ -17,7 +17,7 @@ const longNamesForLanguages: LongNamesForLanguageType = {
 
 const LanguageSelect: React.FC<LanguageSelectProps> = ({}) => {
   const intl = useIntl()
-  const { availableLanguages, customNavigate } = intl
+  const { availableLanguages, navigateWithLanguageChange } = intl
   const [current, setCurrent] = React.useState('en')
   const [, setAtomLang] = useRecoilState(currentlySelectedLanguage)
   const location = useLocation()
@@ -34,7 +34,7 @@ const LanguageSelect: React.FC<LanguageSelectProps> = ({}) => {
   const onClick = (e: any) => {
     setCurrent(e.key)
     setAtomLang({ language: e.key })
-    customNavigate(location.pathname, e.key)
+    navigateWithLanguageChange(location.pathname, e.key)
   }
 
   return (
