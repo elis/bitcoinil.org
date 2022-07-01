@@ -1,5 +1,5 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import NextApp from './next-app'
+import App from './app'
 
-ReactDOM.render(<NextApp />, document.getElementById('root'))
+ReactDOM.render(<App />, document.getElementById('root'))

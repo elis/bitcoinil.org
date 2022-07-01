@@ -1,9 +1,10 @@
 import * as React from 'react'
-import { themes } from '@djitsu/themes'
-import type { CompiledTheme, CompiledVariant } from '@djitsu/themes'
 import { Helmet } from 'react-helmet'
 import styled, { createGlobalStyle } from 'styled-components'
 import { Button } from 'antd'
+
+import type { CompiledTheme, CompiledVariant } from '@djitsu/themes'
+import { themes } from '@djitsu/themes'
 import { ThemeContextValue } from '../Interfaces'
 
 const { createContext, useContext, useMemo, useState } = React
@@ -22,6 +23,7 @@ const ThemeContext = createContext(defaultThemeContext)
 type Props = {
   children: JSX.Element
 }
+
 const Theme = ({ children }: Props) => {
   const [selectedTheme, selectedVariant] = ['bitil-theme', '']
   const [activeState, setActiveState] = useState({
@@ -135,7 +137,15 @@ const Theme = ({ children }: Props) => {
             media="(prefers-color-scheme: dark)"
           />
         )}
-        {fontHref && <link rel="stylesheet" href={fontHref} />}
+        {/* Check if fontHref is array */}
+        {fontHref &&
+          (Array.isArray(fontHref) ? (
+            fontHref.map((fh) => (
+              <link key={'font-href ' + fh} rel="stylesheet" href={fh} />
+            ))
+          ) : (
+            <link rel="stylesheet" href={fontHref} />
+          ))}
       </Helmet>
       {showDebug ? (
         <>
