@@ -49,11 +49,15 @@ const LanguageSelectMobile: React.FC<LanguageSelectMobileProps> = ({
       >
         <Menu.SubMenu
           key={'lang-submenu'}
-          title={<p className="collapsable-menu">Select Language</p>}
+          title={<p className="collapsable-menu">Language</p>}
         >
           {availableLanguages.map((avLang, i) => {
             return (
-              <Menu.Item onClick={onClick} key={`${avLang.name}`}>
+              <Menu.Item
+                style={{ background: 'grey' }}
+                onClick={onClick}
+                key={`${avLang.name}`}
+              >
                 {avLang.longName}
               </Menu.Item>
             )
