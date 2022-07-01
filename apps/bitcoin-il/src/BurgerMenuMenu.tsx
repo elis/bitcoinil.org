@@ -13,6 +13,7 @@ import ThemeSelectMobile from './ThemeSelectMobile'
 const BurgerMenuMenu: React.FC<BurgerMenuMenuProps> = ({ setLanguage }) => {
   const [, setMenuOpen] = useRecoilState(isBurgerMenuOpen)
   const [openKeys, setOpenKeys] = React.useState([])
+  const [open, setOpen] = React.useState('')
 
   const onOpenChange = (keys: any) => {
     setOpenKeys(keys)
@@ -56,13 +57,21 @@ const BurgerMenuMenu: React.FC<BurgerMenuMenuProps> = ({ setLanguage }) => {
             )
           }
           return (
-            <Menu.Item key={item.key}>
+            <Menu.Item
+              key={item.key}
+              onClick={() => {
+                setOpen(item.key)
+              }}
+            >
               <CustomNavLink to={`/${item.key}`}>
-                <p>{item.label}</p>
+                <p
+                  className={`burger-menu-item ${
+                    open === item.key ? 'burger-selected-menu-item' : ''
+                  }`}
+                >
+                  {item.label}
+                </p>
               </CustomNavLink>
-              {/* <NavLink to={`/${item.key}`}>
-                <p>{item.label}</p>
-              </NavLink> */}
             </Menu.Item>
           )
         })}
@@ -147,5 +156,13 @@ const StyledBurgerMenuMenu = styled.div`
     .ant-menu-submenu-arrow::after {
       color: white;
     }
+  }
+
+  .burger-menu-item {
+    margin: 0;
+  }
+
+  .burger-selected-menu-item {
+    color: black;
   }
 `
