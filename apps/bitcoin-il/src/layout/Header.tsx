@@ -5,19 +5,18 @@ import { phoneDevices } from '../utils/breakpoints'
 import BurgerMenu from '../components/BurgerMenu'
 import CustomNavLink from '../components/CustomNavLink'
 import HeaderMenu from '../components/HeaderMenu'
-import logo from '../img/logo.svg'
 import { HeaderProps } from '../utils/interfaces'
 import LanguageSelect from '../components/LanguageSelect'
 import ThemeSwitch from '../components/ThemeSwitch'
+import Logo from '../components/Logo'
 
 const Header: React.FC<HeaderProps> = ({}) => {
   return (
-    <StyledHeader id="Header">
-      <div className="header-left">
+    <StyledHeader className="header">
+      <div className="header-left logo">
         <CustomNavLink to="/">
-          <div className="logo">
-            <img src={logo} />
-          </div>
+          {/* <img src={logo} /> */}
+          <Logo />
         </CustomNavLink>
       </div>
       <div className="header-middle">
@@ -40,24 +39,35 @@ const StyledHeader = styled.div`
     padding: 0 25px;
   }
 
-  display: flex;
   height: 60px;
+  display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
 
   .header {
     &-left {
-      .logo {
-        margin: 0;
-        cursor: pointer;
-        transition: all 200ms;
-        &:hover {
-          opacity: 0.5;
+      display: flex;
+      align-items: center;
+      &.logo {
+        > a {
+          display: flex;
+          align-items: center;
+          max-width: 100px;
+          margin: 0;
+          cursor: pointer;
           transition: all 200ms;
-        }
+          color: var(--text-color);
 
-        img {
-          height: 20px;
+          &:hover {
+            opacity: 0.5;
+            transition: all 200ms;
+          }
+
+          img {
+            height: 20px;
+          }
         }
       }
     }
