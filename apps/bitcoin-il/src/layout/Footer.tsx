@@ -104,6 +104,10 @@ const StyledFooter = styled.div`
     width: 90vw;
     justify-content: space-evenly;
 
+    #app.dir-rtl & {
+      /* flex-direction: row-reverse; */
+      direction: rtl;
+    }
     ${phoneDevices} {
       flex-direction: column;
     }
